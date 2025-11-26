@@ -1,4 +1,5 @@
 import sqlite3
+from datetime import datetime
 
 from flask import (
     Blueprint,
@@ -72,6 +73,20 @@ def adminPanelSecurityAudit():
         f"SELECT COUNT(*) FROM security_audit_log {filter_condition}",
         f"SELECT * FROM security_audit_log {filter_condition} ORDER BY timeStamp DESC",
     )
+
+    # Format timestamps
+    formatted_logs = []
+    for log in audit_logs:
+        log_list = list(log)
+        try:
+            # Convert timestamp (index 9) to readable format
+            log_list[9] = datetime.fromtimestamp(log_list[9]).strftime("%Y-%m-%d %H:%M:%S")
+        except (ValueError, TypeError):
+            # Keep original if conversion fails
+            pass
+        formatted_logs.append(log_list)
+    
+    audit_logs = formatted_logs
 
     connection.close()
 
