@@ -2,19 +2,6 @@
   "about": {
     "title": "About",
     "version": "Version",
-    "description": "Simple blog app made with Flask, SQLite3, WTForms, Passlib, reCAPTCHA, Requests, TailwindCSS, Tabler Icons",
-    "moreInfo": "Click for more information about",
-    "sourceRepo": "source code",
-    "credits": "Made with <i class='ti ti-heart-filled text-rose-500'></i> by <a href='https://dogukanurker.com/' target='_blank' class='text-rose-500 font-medium'>Doğukan Ürker</a>"
-  },
-  "confirm2faReset": {
-    "title": "Confirm 2FA Reset",
-    "invalidToken": "Invalid or Expired Link",
-    "tokenError": "This reset link is invalid or has expired. Please contact an administrator to request a new 2FA reset.",
-    "backToLogin": "Back to Login",
-    "resetSuccess": "2FA Reset Successfully",
-    "success": "Post has been edited.",
-    "login": "You need to login to edit a post.",
     "empty": "You can not leave title or content empty.",
     "author": "You can not edit someone else's post."
   },
