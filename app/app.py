@@ -33,9 +33,7 @@ from routes.adminPanelSecurityAudit import (
 from routes.adminPanelSiteSettings import (
     adminPanelSiteSettingsBlueprint,
 )
-from routes.adminPanelAbout import (
-    adminPanelAboutBlueprint,
-)
+
 from routes.category import (
     categoryBlueprint,
 )
@@ -360,7 +358,7 @@ app.register_blueprint(adminPanelUsersBlueprint)
 app.register_blueprint(adminPanelPostsBlueprint)
 app.register_blueprint(adminPanelSecurityAuditBlueprint)
 app.register_blueprint(adminPanelSiteSettingsBlueprint)
-app.register_blueprint(adminPanelAboutBlueprint)
+
 app.register_blueprint(accountSettingsBlueprint)
 app.register_blueprint(returnPostBannerBlueprint)
 app.register_blueprint(adminPanelCommentsBlueprint)

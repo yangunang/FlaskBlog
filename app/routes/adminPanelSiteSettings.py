@@ -525,6 +525,66 @@ FlaskBlog Admin Panel
             connection.close()
             return redirect("/admin/site-settings")
 
+        # Handle About page settings
+        elif upload_type == "about_settings":
+            about_title = request.form.get("about_title", "").strip()
+            about_content = request.form.get("about_content", "").strip()
+            about_show_version = "True" if request.form.get("about_show_version") else "False"
+            about_show_github = "True" if request.form.get("about_show_github") else "False"
+            about_github_url = request.form.get("about_github_url", "").strip()
+            about_author_url = request.form.get("about_author_url", "").strip()
+            about_credits = request.form.get("about_credits", "").strip()
+
+            try:
+                # Save about page settings to database
+                about_settings = [
+                    ("about_title", about_title),
+                    ("about_content", about_content),
+                    ("about_show_version", about_show_version),
+                    ("about_show_github", about_show_github),
+                    ("about_github_url", about_github_url),
+                    ("about_author_url", about_author_url),
+                    ("about_credits", about_credits),
+                ]
+
+                for key, value in about_settings:
+                    cursor.execute(
+                        "SELECT setting_id FROM site_settings WHERE setting_key = ?",
+                        (key,)
+                    )
+                    if cursor.fetchone():
+                        cursor.execute(
+                            "UPDATE site_settings SET setting_value = ?, updated_at = ? WHERE setting_key = ?",
+                            (value, currentTimeStamp(), key)
+                        )
+                    else:
+                        cursor.execute(
+                            "INSERT INTO site_settings(setting_key, setting_value, updated_at) VALUES(?, ?, ?)",
+                            (key, value, currentTimeStamp())
+                        )
+
+                connection.commit()
+
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="saveSuccess",
+                    category="success",
+                    language=session.get("language", "en")
+                )
+                Log.success(f"Admin {session['userName']} updated about page content via site settings")
+
+            except Exception as e:
+                flashMessage(
+                    page="adminSiteSettings",
+                    message="saveError",
+                    category="error",
+                    language=session.get("language", "en")
+                )
+                Log.error(f"About page update failed: {e}")
+
+            connection.close()
+            return redirect("/admin/site-settings")
+
     # GET request - show current settings
     cursor.execute(
         "SELECT setting_value FROM site_settings WHERE setting_key = ?",
@@ -568,6 +628,28 @@ FlaskBlog Admin Panel
             else:
                 smtp_settings[key] = ""
 
+    # Get About page settings
+    about_settings = {}
+    setting_keys = [
+        "about_title", "about_content", "about_show_version", "about_show_github",
+        "about_github_url", "about_author_url", "about_credits"
+    ]
+    for key in setting_keys:
+        cursor.execute(
+            "SELECT setting_value FROM site_settings WHERE setting_key = ?",
+            (key,)
+        )
+        result = cursor.fetchone()
+        if result:
+            about_settings[key] = result[0]
+        else:
+            # Set defaults
+            about_settings[key] = ""
+            if key == "about_show_version":
+                about_settings[key] = "True"
+            elif key == "about_show_github":
+                about_settings[key] = "True"
+
     connection.close()
 
     Log.info(f"Admin {session['userName']} viewing site settings page")
@@ -580,5 +662,14 @@ FlaskBlog Admin Panel
         smtpServer=smtp_settings.get("smtp_server", ""),
         smtpPort=smtp_settings.get("smtp_port", ""),
         smtpMail=smtp_settings.get("smtp_mail", ""),
-        smtpPasswordSet=bool(smtp_settings.get("smtp_password", ""))
+        smtpPasswordSet=bool(smtp_settings.get("smtp_password", "")),
+        aboutTitle=about_settings.get("about_title", ""),
+        aboutContent=about_settings.get("about_content", ""),
+        aboutShowVersion=about_settings.get("about_show_version", "True") == "True",
+        aboutShowGithub=about_settings.get("about_show_github", "True") == "True",
+        aboutGithubUrl=about_settings.get("about_github_url", ""),
+        aboutAuthorUrl=about_settings.get("about_author_url", ""),
+        aboutCredits=about_settings.get("about_credits", ""),
+        appName=Settings.APP_NAME,
+        appVersion=Settings.APP_VERSION
     )
