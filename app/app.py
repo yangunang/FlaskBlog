@@ -40,6 +40,9 @@ from routes.category import (
 from routes.changeLanguage import (
     changeLanguageBlueprint,
 )
+from routes.changeEmail import (
+    changeEmailBlueprint,
+)
 from routes.changePassword import (
     changePasswordBlueprint,
 )
@@ -354,6 +357,7 @@ app.register_blueprint(changeUserNameBlueprint)
 app.register_blueprint(changePasswordBlueprint)
 app.register_blueprint(forceChangePasswordBlueprint)
 app.register_blueprint(changeLanguageBlueprint)
+app.register_blueprint(changeEmailBlueprint)
 app.register_blueprint(adminPanelUsersBlueprint)
 app.register_blueprint(adminPanelPostsBlueprint)
 app.register_blueprint(adminPanelSecurityAuditBlueprint)

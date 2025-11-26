@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block head %}
+<title>{{ translations.changeEmail.title }}</title>
+{% endblock head %}
+{% block body %}
+<div class="w-fit mx-auto mt-4 text-center">
+    <h1>{{ translations.changeEmail.title }}</h1>
+    {% from "components/formHelper.html" import render_field %}
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <div class="flex flex-col mt-4">
+            {{ render_field(form.newEmail, placeholder=translations.changeEmail.placeholder, class="input input-bordered
+            w-full max-w-xs") }}
+            <button type="submit" class="btn btn-primary mt-4">{{ translations.changeEmail.change }}</button>
+        </div>
+    </form>
+</div>
+{% endblock body %}

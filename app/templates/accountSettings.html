@@ -4,38 +4,27 @@
 <div class="w-fit mx-auto mt-4 text-center">
     <h1>{{translations.accountSettings.title}}</h1>
     <div class="flex flex-col justify-center mt-8">
-        <a
-            href="/changeusername"
-            class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
-        >
+        <a href="/changeusername" class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto">
             <i class="ti ti-user-edit mr-1 text-2xl"></i>
             {{translations.accountSettings.username}}
         </a>
-        <a
-            href="/changepassword"
-            class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
-        >
+        <a href="/changeemail" class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto">
+            <i class="ti ti-mail mr-1 text-2xl"></i>
+            {{translations.accountSettings.email}}
+        </a>
+        <a href="/changepassword" class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto">
             <i class="ti ti-key mr-1 text-2xl"></i>
             {{translations.accountSettings.password}}
         </a>
-        <a
-            href="/changeprofilepicture"
-            class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
-        >
+        <a href="/changeprofilepicture" class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto">
             <i class="ti ti-user-circle mr-1 text-2xl"></i>
             {{translations.accountSettings.profilePicture}}
         </a>
-        <a
-            href="/gallery/upload"
-            class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
-        >
+        <a href="/gallery/upload" class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto">
             <i class="ti ti-photo-up mr-1 text-2xl"></i>
             {{translations.accountSettings.imageGallery}}
         </a>
-        <a
-            href="/changelanguage"
-            class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
-        >
+        <a href="/changelanguage" class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto">
             <i class="ti ti-language mr-1 text-2xl"></i>
             {{translations.accountSettings.language}}
         </a>
@@ -47,15 +36,11 @@
                 <i class="ti ti-shield-check text-success mr-2 text-2xl"></i>
                 <span class="font-semibold">{{translations.twofa.enabled}}</span>
             </div>
-            <form method="post" action="/disable-2fa" onsubmit="return confirm('{{translations.twofa.disableConfirm}}')">
+            <form method="post" action="/disable-2fa"
+                onsubmit="return confirm('{{translations.twofa.disableConfirm}}')">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="{{translations.twofa.enterPassword}}"
-                    required
-                    class="input input-bordered input-sm w-full mb-2"
-                />
+                <input type="password" name="password" placeholder="{{translations.twofa.enterPassword}}" required
+                    class="input input-bordered input-sm w-full mb-2" />
                 <button type="submit" class="btn btn-error btn-sm w-full">
                     <i class="ti ti-shield-off"></i>
                     {{translations.twofa.disable}}
@@ -63,10 +48,7 @@
             </form>
         </div>
         {% else %}
-        <a
-            href="/setup-2fa"
-            class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
-        >
+        <a href="/setup-2fa" class="my-2 hover:text-rose-500 duration-150 flex items-center w-fit mx-auto">
             <i class="ti ti-shield-lock mr-1 text-2xl"></i>
             {{translations.twofa.setup}}
         </a>
@@ -76,10 +58,7 @@
     <h2 class="my-4">
         <form method="post">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-            <button
-                type="submit"
-                class="hover:text-rose-500 duration-150 flex items-center w-fit mx-auto"
-            >
+            <button type="submit" class="hover:text-rose-500 duration-150 flex items-center w-fit mx-auto">
                 <i class="ti ti-user-x mr-1 text-2xl"></i>
                 {{ translations.accountSettings.delete }}
             </button>
