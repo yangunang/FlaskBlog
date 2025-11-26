@@ -2,250 +2,628 @@
   "about": {
     "title": "About",
     "version": "Version",
-    "empty": "You can not leave title or content empty.",
-    "author": "You can not edit someone else's post."
+    "description": "Simple blog app made with Flask, SQLite3, WTForms, Passlib, reCAPTCHA, Requests, TailwindCSS, Tabler Icons",
+    "moreInfo": "Click for more information about",
+    "sourceRepo": "source code",
+    "credits": "Made with <i class='ti ti-heart-filled text-rose-500'></i> by <a href='https://dogukanurker.com/' target='_blank' class='text-rose-500 font-medium'>Doğukan Ürker</a>"
   },
-  "login": {
-    "success": "You have successfully logged in.",
-    "password": "Wrong password",
-    "notFound": "User not found",
-    "invalid": "Invalid username or password.",
-    "mustChangePassword": "You must change your password before continuing.",
-    "2faRequired": "Please enter your two-factor authentication code."
+  "confirm2faReset": {
+    "title": "Confirm 2FA Reset",
+    "invalidToken": "Invalid or Expired Link",
+    "tokenError": "This reset link is invalid or has expired. Please contact an administrator to request a new 2FA reset.",
+    "backToLogin": "Back to Login",
+    "resetSuccess": "2FA Reset Successfully",
+    "resetSuccessMessage": "Two-factor authentication has been disabled for your account. You can now log in with just your username and password.",
+    "reEnableHint": "You can re-enable 2FA from your account settings after logging in.",
+    "loginNow": "Login Now",
+    "resetCancelled": "Reset Cancelled",
+    "resetCancelledMessage": "The 2FA reset has been cancelled. Your two-factor authentication remains enabled.",
+    "contactAdmin": "If you still need help accessing your account, please contact an administrator.",
+    "confirmTitle": "Confirm 2FA Reset",
+    "confirmMessage": "An administrator has requested to reset two-factor authentication for your account.",
+    "warningMessage": "If you did not request this, click 'Cancel' and contact an administrator immediately.",
+    "cancel": "Cancel",
+    "confirm": "Confirm Reset"
   },
-  "forceChangePassword": {
-    "success": "Password has been changed successfully. You can now access the site.",
-    "match": "Passwords do not match.",
-    "minLength": "Password must be at least 12 characters long.",
-    "uppercase": "Password must contain at least 1 uppercase letter.",
-    "lowercase": "Password must contain at least 1 lowercase letter.",
-    "digit": "Password must contain at least 1 digit.",
-    "special": "Password must contain at least 1 special character."
+  "accountSettings": {
+    "title": "Account Settings",
+    "username": "change username",
+    "password": "change password",
+    "delete": "delete account",
+    "language": "change language",
+    "profilePicture": "change profile picture",
+    "banner": "change profile banner",
+    "imageGallery": "image gallery"
   },
-  "logout": {
-    "success": "You have successfully logged out."
+  "adminPanel": {
+    "title": "Admin Panel",
+    "users": "Users",
+    "posts": "Posts",
+    "comments": "Comments",
+    "securityAudit": "Security Audit",
+    "siteSettings": "Site Settings",
+    "aboutPage": "About Page"
   },
-  "passwordReset": {
-    "success": "Password has been reset. You can login with your new password.",
-    "email": "Email has been sent.",
-    "code": "Code has been sent.",
-    "same": "New password can not be same with old password.",
-    "match": "Passwords do not match.",
-    "notFound": "User not found.",
-    "wrong": "Wrong code."
+  "adminAbout": {
+    "title": "About Page Settings",
+    "backToAdmin": "Back to Admin Panel",
+    "previewInfo": "Preview your changes on the",
+    "aboutPage": "About Page",
+    "customTitle": "Custom Title",
+    "titleLabel": "Page Title",
+    "titlePlaceholder": "Leave empty to use app name",
+    "titleHint": "Default:",
+    "customContent": "Custom Description",
+    "contentLabel": "Page Description",
+    "contentPlaceholder": "Enter custom description (supports Markdown). Leave empty to use default.",
+    "markdownSupport": "Markdown formatting is supported",
+    "displayOptions": "Display Options",
+    "showVersion": "Show Version Number",
+    "showVersionHint": "Display the application version",
+    "showGithub": "Show GitHub Links",
+    "showGithubHint": "Display links to the source repository and credits",
+    "githubLinks": "GitHub Links",
+    "githubUrlLabel": "GitHub Repository URL",
+    "githubUrlHint": "Leave empty for default repository",
+    "authorUrlLabel": "Author Website URL",
+    "authorUrlHint": "Leave empty for default author link",
+    "creditsLabel": "Credits Text",
+    "creditsPlaceholder": "Made with love by Your Name",
+    "creditsHint": "Supports basic HTML: <a>, <i>, <span>",
+    "preview": "Preview",
+    "save": "Save Changes",
+    "tips": "Tips",
+    "tip1": "Leave fields empty to use default values from translations",
+    "tip2": "Custom content supports basic Markdown: **bold**, *italic*, [links](url)",
+    "tip3": "Changes take effect immediately after saving"
   },
-  "delete": {
-    "user": "User has been deleted.",
-    "post": "Post has been deleted.",
-    "comment": "Comment has been deleted."
+  "adminSiteSettings": {
+    "smtpTitle": "SMTP Configuration",
+    "smtpDescription": "Configure email settings for password reset and verification emails.",
+    "smtpServer": "SMTP Server",
+    "smtpPort": "SMTP Port",
+    "smtpEmail": "SMTP Email",
+    "smtpPassword": "SMTP Password",
+    "smtpPasswordPlaceholder": "Enter new password (leave blank to keep current)",
+    "smtpPasswordSet": "Password is set",
+    "smtpWarning": "For Gmail, use an App Password instead of your regular password. Enable 2FA and generate an app password from your Google Account settings.",
+    "smtpSave": "Save SMTP Settings",
+    "smtpUsage": "SMTP Usage",
+    "smtpUsage1": "Password reset emails",
+    "smtpUsage2": "Account verification emails",
+    "smtpUsage3": "System notifications",
+    "smtpTestTitle": "Test SMTP Configuration",
+    "smtpTestDescription": "Send a test email to verify your SMTP configuration is working correctly.",
+    "smtpTestEmail": "Recipient Email",
+    "smtpTestEmailPlaceholder": "Enter email address to receive test",
+    "smtpTestSend": "Send Test Email"
   },
-  "setLanguage": {
-    "success": "Language has been changed."
-  },
-  "post": {
-    "success": "You earned 5 points by commenting."
-  },
-  "signup": {
-    "success": "You have successfully signed up.",
-    "ascii": "Username can only contain ASCII characters.",
-    "username": "This username is already taken.",
-    "email": "This email is already taken.",
-    "password": "Passwords do not match.",
-    "taken": "This username and email is already taken."
-  },
-  "verifyUser": {
-    "success": "Your account has been verified.",
-    "code": "Code has been sent.",
-    "notFound": "User not found.",
-    "wrong": "Wrong code."
-  },
-  "error": {
-    "wrongCall": "You made a wrong flash message call on server side."
-  },
-  "fileUpload": {
-    "fileSizeExceeded": "File size exceeds the maximum allowed limit. Please upload a smaller file.",
-    "invalidFileType": "Invalid file type. Only JPG, PNG, and WebP images are allowed.",
-    "invalidImageFile": "Invalid image file. The file could not be recognized as a valid image.",
-    "fileTypeMismatch": "File extension does not match the actual file content. Please ensure your file has the correct extension.",
-    "svgNotSupported": "SVG files are not supported for security reasons."
-  },
-  "imageGallery": {
-    "userNotFound": "User not found.",
-    "loginRequired": "You need to login to upload images.",
-    "noFileProvided": "No file provided.",
-    "noFileSelected": "No file selected.",
-    "invalidFile": "Invalid file. Please upload a valid image.",
-    "uploadSuccess": "Image uploaded successfully!",
-    "uploadError": "Failed to upload image. Please try again.",
-    "imageNotFound": "Image not found.",
-    "unauthorized": "You are not authorized to delete this image.",
-    "deleteSuccess": "Image deleted successfully."
-  },
-  "setup2fa": {
-    "success": "Two-factor authentication has been enabled successfully.",
-    "error": "Failed to enable two-factor authentication.",
-    "invalidCode": "Invalid verification code. Please try again.",
-    "alreadyEnabled": "Two-factor authentication is already enabled.",
-    "loginRequired": "You need to login to set up two-factor authentication."
-  },
-  "disable2fa": {
-    "loginRequired": "You need to login to disable two-factor authentication.",
-    "passwordRequired": "Password is required to disable two-factor authentication.",
-    "userNotFound": "User not found.",
-    "incorrectPassword": "Incorrect password. Please try again.",
-    "notEnabled": "Two-factor authentication is not enabled.",
-    "disabled": "Two-factor authentication has been disabled successfully."
-  },
-  "verify2fa": {
-    "tokenRequired": "Please enter your verification code.",
-    "success": "Two-factor authentication verified successfully.",
-    "invalidToken": "Invalid verification code. Please try again."
+  "adminPanelComments": {
+    "title": "Admin Panel - Comments",
+    "comments": "Comments",
+    "postID": "Post ID",
+    "creationTime": "Creation Time",
+    "creationDate": "Creation Date",
+    "author": "Author"
   },
   "adminPanelUsers": {
-    "reset2faEmailSent": "2FA reset email has been sent to the user.",
-    "reset2faEmailFailed": "Failed to send 2FA reset email. Please check SMTP settings.",
-    "userNotFound": "User not found or has no email address."
-  }
-},
-"roles": {
-  "user": "User",
-  "admin": "Admin"
-},
-"privacyPolicy": {
-  "title": "Privacy Policy",
-  "intro": "This Privacy Policy describes how Doğukan Ürker's Flask Blog ('we', 'us', or 'our') collects, uses, and discloses your information when you use our mobile application (the 'App').",
-  "information": "Information Collection and Use",
-  "informationText": "When you use our App, we collect and log various types of user activity data, including but not limited to:",
-  "informationUser": "User login data: We collect information related to user login activities for authentication and security purposes.",
-  "informationPost": "Post and comment data: We collect information about posts and comments made within the App for functionality and user engagement purposes.",
-  "informationGeneral": "General user activity: We log various user activities within the App to improve user experience, troubleshoot technical issues, and analyze usage patterns.",
-  "cookies": "Cookies",
-  "cookiesText": "Our App uses cookies to enhance the user experience. The cookies we use include:",
-  "cookiesTheme": "UI theme cookie: We store the user's selected UI theme preference to personalize the appearance of the App.",
-  "cookiesLanguage": "Browser default language: We store the user's browser default language preference to provide localized content.",
-  "serviceProviders": "Service Providers",
-  "serviceProvidersText": "We may employ third-party companies or individuals to facilitate our App or provide services on our behalf. These third parties may have access to your information to perform tasks such as analytics, hosting, and technical support. However, they are obligated not to disclose or use it for any other purpose.",
-  "otherLinks": "Links to Other Sites",
-  "otherLinksText": "Our App may contain links to external sites, including X and Doğukan Ürker's personal site. We are not responsible for the content or privacy practices of such external sites. We encourage users to review the privacy policies of these sites before providing any personal information.",
-  "security": "Security",
-  "securityText": "We take reasonable precautions to protect the information collected through our App. However, lease be aware that no method of transmission over the internet or method of electronic storage is 100% secure, and we cannot guarantee absolute security.",
-  "children": "Children's Privacy",
-  "childrenText": "Our App is not intended for use by individuals under the age of 13. We do not knowingly collect personal identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to take necessary actions.",
-  "changes": "Changes to This Privacy Policy",
-  "changesText": "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.",
-  "contact": "Contact Us",
-  "contactText": "If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us. Mail:"
-},
-"analytics": {
-  "title": "Analytics",
-  "goToPage": "Go to page",
-  "totalVisitor": "Total Visitor",
-  "todaysVisitor": "Today's Visitor",
-  "category": "Category",
-  "onPosted": "On Posted",
-  "trafficCount": "Traffic Count",
-  "sincePosted": "Since Posted",
-  "last1month": "Last 1m",
-  "last7days": "Last 7d",
-  "last24hours": "Last 24h",
-  "last48hours": "Last 48h",
-  "traffic": "Traffic",
-  "visitorCounts": "Visitor Counts",
-  "computerOS": "Computer OS",
-  "topCountries": "Top Countries",
-  "visitor": "Visitor",
-  "viewAll": "View All"
-},
-"adminPanelSecurityAudit": {
-  "title": "Security Audit Log",
-  "noLogs": "No security events found for the selected filter.",
-  "filters": {
-    "all": "All Events",
-    "adminLogins": "Admin Logins",
-    "userLogins": "User Logins",
-    "adminActions": "Admin Actions",
-    "pageAccess": "Page Access",
-    "rateLimits": "Rate Limits"
+    "title": "Admin Panel - Users",
+    "id": "ID",
+    "users": "Users",
+    "email": "Email",
+    "joinTime": "Join Time",
+    "joinDate": "Join Date",
+    "role": "Role",
+    "points": "Points",
+    "delete": "delete user",
+    "setUser": "set user role to user",
+    "setAdmin": "set user role to admin",
+    "reset2fa": "Reset 2FA",
+    "reset2faTitle": "Reset two-factor authentication for this user"
   },
-  "eventTypes": {
-    "adminLoginSuccess": "Admin Login Success",
-    "adminLoginFailure": "Admin Login Failure",
-    "userLoginSuccess": "User Login Success",
-    "userLoginFailure": "User Login Failure",
-    "adminAction": "Admin Action",
-    "pageAccess": "Page Access",
-    "rateLimit": "Rate Limit"
+  "categories": {
+    "all": "All",
+    "apps": "Apps",
+    "art": "Art",
+    "books": "Books",
+    "business": "Business",
+    "code": "Code",
+    "education": "Education",
+    "finance": "Finance",
+    "foods": "Foods",
+    "games": "Games",
+    "health": "Health",
+    "history": "History",
+    "movies": "Movies",
+    "music": "Music",
+    "nature": "Nature",
+    "science": "Science",
+    "series": "Series",
+    "sports": "Sports",
+    "technology": "Technology",
+    "travel": "Travel",
+    "web": "Web",
+    "other": "Other"
   },
-  "fields": {
+  "changeLanguage": {
+    "title": "Select Language"
+  },
+  "changePassword": {
+    "title": "Change Password",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "change": "Change Password"
+  },
+  "forceChangePassword": {
+    "title": "Change Your Password",
+    "warning": "You must change your password before continuing.",
+    "description": "For security reasons, admin accounts must set a strong password on first login.",
+    "requirements": "Password Requirements",
+    "reqMinLength": "At least 12 characters",
+    "reqUppercase": "At least 1 uppercase letter (A-Z)",
+    "reqLowercase": "At least 1 lowercase letter (a-z)",
+    "reqDigit": "At least 1 digit (0-9)",
+    "reqSpecial": "At least 1 special character (!@#$%^&*...)",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm new password",
+    "submit": "Set New Password"
+  },
+  "changeProfilePicture": {
+    "title": "Change Profile Picture",
+    "default": "default seed is your username",
+    "info": "click for more information about profile picture seeds",
+    "set": "Set Profile Picture",
+    "placeholder": "Enter seed for profile picture"
+  },
+  "changeBanner": {
+    "title": "Change Profile Banner"
+  },
+  "changeUserName": {
+    "title": "Change Username",
+    "placeholder": "New Username",
+    "change": "Change Username"
+  },
+  "createPost": {
+    "title": "Create Post",
+    "titlePlaceholder": "post title",
+    "category": "Select a Category",
+    "content": "Content",
+    "banner": "Upload a Banner",
+    "bannerPlaceholder": "post banner",
+    "tags": "tags",
+    "post": "Post",
+    "separate": "(Separate tags with commas)",
+    "abstract": "Abstract",
+    "abstractPlaceholder": "post abstract"
+  },
+  "csrfError": {
+    "reason": "Reason",
+    "description": "Fill the same form again."
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "titleAdmin": "Admin Panel - Posts",
+    "posts": "Posts",
+    "comments": "Comments",
+    "tags": "Tags",
+    "views": "Views",
+    "creationTime": "Creation Time",
+    "creationDate": "Creation Date",
+    "editTime": "Last Edit Time",
+    "editDate": "Last Edit Date",
+    "author": "Author",
+    "category": "Category",
+    "noPosts": "This users hasn't created any posts yet.",
+    "noPost": "No post yet,",
+    "create": "create one",
+    "go": "go to post"
+  },
+  "editPost": {
+    "title": "Edit Post",
+    "titlePlaceholder": "post title",
+    "category": "Select a Category",
+    "current": "Current Banner",
+    "new": "New Banner",
+    "tags": "tags",
+    "separate": "(Separate tags with commas)",
+    "save": "Save Changes",
+    "bannerPlaceholder": "post banner",
+    "abstract": "Abstract",
+    "abstractPlaceholder": "post abstract"
+  },
+  "login": {
+    "title": "Login",
+    "username": "username",
+    "password": "password",
+    "forgot": "Forgot Password?"
+  },
+  "notFound": {
+    "text": "I don't know what is",
+    "sorry": "sorry",
+    "home": "go to home"
+  },
+  "passwordReset": {
+    "title": "Password Reset",
+    "email": "email",
+    "username": "username",
+    "send": "Send Reset Email",
+    "reset": "Reset Password",
+    "code": "Send Code",
+    "codePlaceholder": "Enter the code you received",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password"
+  },
+  "post": {
+    "minRead": "min read",
+    "placeholder": "What are your thoughts?",
+    "viewPerformance": "View Performance",
+    "memberSince": "Member since"
+  },
+  "sortMenu": {
+    "asc": "Ascending",
+    "desc": "Descending",
+    "create": "Creation Date",
+    "title": "Title",
+    "views": "Views",
+    "category": "Category",
+    "edit": "Last Edit Date",
+    "hot": "Hot"
+  },
+  "search": {
+    "title": "Search",
+    "noResults": "No results",
+    "users": "Users",
+    "posts": "Posts",
+    "results": "Results"
+  },
+  "searchBar": {
+    "title": "Search",
+    "placeholder": "search"
+  },
+  "signup": {
+    "title": "Sign Up",
+    "username": "username",
+    "email": "email",
+    "password": "password",
+    "confirm": "confirm password",
+    "policy": "Privacy Policy",
+    "by": "By signing up, you accept"
+  },
+  "unauthorized": {
+    "title": "reCAPTCHA Error",
+    "request": "Please submit the form again.",
+    "info": "reCAPTCHA Verification has failed."
+  },
+  "user": {
+    "posts": "Posts",
+    "comments": "Comments",
+    "points": "Points",
+    "joinDate": "Join Date",
+    "createDate": "Creation Date",
+    "createTime": "Creation Time",
+    "dashboard": "dashboard",
+    "role": "Role",
     "user": "User",
-    "ip": "IP Address",
-    "userAgent": "User Agent",
-    "path": "Path",
-    "method": "Method",
-    "status": "Status Code"
+    "admin": "admin",
+    "settings": "settings",
+    "views": "Views",
+    "go": "go to post"
+  },
+  "verifyUser": {
+    "title": "Verify Account",
+    "placeholder": "Enter the code you received",
+    "send": "Click to send verification code"
+  },
+  "flash": {
+    "changePassword": {
+      "same": "New password can not be same with old password.",
+      "match": "Passwords do not match.",
+      "success": "Password has been changed.",
+      "old": "Old password is wrong.",
+      "login": "You need to login to change your password."
+    },
+    "changeProfilePicture": {
+      "success": "Profile picture has been changed.",
+      "error": "Failed to upload profile picture. Please check the file format and size."
+    },
+    "changeBanner": {
+      "success": "Banner has been changed.",
+      "error": "Failed to upload banner. Please check the file format and size."
+    },
+    "adminSiteSettings": {
+      "logoSuccess": "Site logo updated successfully.",
+      "logoError": "Failed to upload logo. Please check the file format and size.",
+      "logoNoFile": "No logo file provided.",
+      "logoNoSelection": "No file selected.",
+      "logoInvalidType": "Invalid file type. Allowed: .ico, .png, .jpg, .jpeg, .webp",
+      "logoTooLarge": "File too large.",
+      "profileSuccess": "Default profile picture updated successfully.",
+      "profileError": "Failed to upload default profile picture.",
+      "profileNoFile": "No profile picture file provided.",
+      "profileNoSelection": "No file selected.",
+      "profileInvalid": "Invalid file.",
+      "bannerSuccess": "Default banner updated successfully.",
+      "bannerError": "Failed to upload default banner.",
+      "bannerNoFile": "No banner file provided.",
+      "bannerNoSelection": "No file selected.",
+      "bannerInvalid": "Invalid file.",
+      "smtpSuccess": "SMTP configuration saved successfully.",
+      "smtpError": "Failed to save SMTP configuration.",
+      "smtpInvalidPort": "Invalid port number. Must be between 1 and 65535.",
+      "smtpTestSuccess": "Test email sent successfully! Check your inbox.",
+      "smtpTestError": "Failed to send test email. Please check your SMTP configuration.",
+      "smtpTestAuthError": "Authentication failed. Please check your email and password.",
+      "smtpTestNoEmail": "Please enter a recipient email address.",
+      "smtpTestNotConfigured": "SMTP is not configured. Please save your SMTP settings first."
+    },
+    "adminAbout": {
+      "saveSuccess": "About page settings saved successfully.",
+      "saveError": "Failed to save about page settings."
+    },
+    "changeUserName": {
+      "same": "This is already your username.",
+      "success": "Username has been changed.",
+      "taken": "This username is already taken.",
+      "ascii": "Username can only contain ASCII characters."
+    },
+    "createPost": {
+      "success": "You earned 20 points for creating a post.",
+      "login": "You need to login to create a post.",
+      "empty": "You can not leave title or content empty."
+    },
+    "dashboard": {
+      "login": "You need to login to see your dashboard."
+    },
+    "editPost": {
+      "success": "Post has been edited.",
+      "login": "You need to login to edit a post.",
+      "empty": "You can not leave title or content empty.",
+      "author": "You can not edit someone else's post."
+    },
+    "login": {
+      "success": "You have successfully logged in.",
+      "password": "Wrong password",
+      "notFound": "User not found",
+      "invalid": "Invalid username or password.",
+      "mustChangePassword": "You must change your password before continuing.",
+      "2faRequired": "Please enter your two-factor authentication code."
+    },
+    "forceChangePassword": {
+      "success": "Password has been changed successfully. You can now access the site.",
+      "match": "Passwords do not match.",
+      "minLength": "Password must be at least 12 characters long.",
+      "uppercase": "Password must contain at least 1 uppercase letter.",
+      "lowercase": "Password must contain at least 1 lowercase letter.",
+      "digit": "Password must contain at least 1 digit.",
+      "special": "Password must contain at least 1 special character."
+    },
+    "logout": {
+      "success": "You have successfully logged out."
+    },
+    "passwordReset": {
+      "success": "Password has been reset. You can login with your new password.",
+      "email": "Email has been sent.",
+      "code": "Code has been sent.",
+      "same": "New password can not be same with old password.",
+      "match": "Passwords do not match.",
+      "notFound": "User not found.",
+      "wrong": "Wrong code."
+    },
+    "delete": {
+      "user": "User has been deleted.",
+      "post": "Post has been deleted.",
+      "comment": "Comment has been deleted."
+    },
+    "setLanguage": {
+      "success": "Language has been changed."
+    },
+    "post": {
+      "success": "You earned 5 points by commenting."
+    },
+    "signup": {
+      "success": "You have successfully signed up.",
+      "ascii": "Username can only contain ASCII characters.",
+      "username": "This username is already taken.",
+      "email": "This email is already taken.",
+      "password": "Passwords do not match.",
+      "taken": "This username and email is already taken."
+    },
+    "verifyUser": {
+      "success": "Your account has been verified.",
+      "code": "Code has been sent.",
+      "notFound": "User not found.",
+      "wrong": "Wrong code."
+    },
+    "error": {
+      "wrongCall": "You made a wrong flash message call on server side."
+    },
+    "fileUpload": {
+      "fileSizeExceeded": "File size exceeds the maximum allowed limit. Please upload a smaller file.",
+      "invalidFileType": "Invalid file type. Only JPG, PNG, and WebP images are allowed.",
+      "invalidImageFile": "Invalid image file. The file could not be recognized as a valid image.",
+      "fileTypeMismatch": "File extension does not match the actual file content. Please ensure your file has the correct extension.",
+      "svgNotSupported": "SVG files are not supported for security reasons."
+    },
+    "imageGallery": {
+      "userNotFound": "User not found.",
+      "loginRequired": "You need to login to upload images.",
+      "noFileProvided": "No file provided.",
+      "noFileSelected": "No file selected.",
+      "invalidFile": "Invalid file. Please upload a valid image.",
+      "uploadSuccess": "Image uploaded successfully!",
+      "uploadError": "Failed to upload image. Please try again.",
+      "imageNotFound": "Image not found.",
+      "unauthorized": "You are not authorized to delete this image.",
+      "deleteSuccess": "Image deleted successfully."
+    },
+    "setup2fa": {
+      "success": "Two-factor authentication has been enabled successfully.",
+      "error": "Failed to enable two-factor authentication.",
+      "invalidCode": "Invalid verification code. Please try again.",
+      "alreadyEnabled": "Two-factor authentication is already enabled.",
+      "loginRequired": "You need to login to set up two-factor authentication."
+    },
+    "disable2fa": {
+      "loginRequired": "You need to login to disable two-factor authentication.",
+      "passwordRequired": "Password is required to disable two-factor authentication.",
+      "userNotFound": "User not found.",
+      "incorrectPassword": "Incorrect password. Please try again.",
+      "notEnabled": "Two-factor authentication is not enabled.",
+      "disabled": "Two-factor authentication has been disabled successfully."
+    },
+    "verify2fa": {
+      "tokenRequired": "Please enter your verification code.",
+      "success": "Two-factor authentication verified successfully.",
+      "invalidToken": "Invalid verification code. Please try again."
+    },
+    "adminPanelUsers": {
+      "reset2faEmailSent": "2FA reset email has been sent to the user.",
+      "reset2faEmailFailed": "Failed to send 2FA reset email. Please check SMTP settings.",
+      "userNotFound": "User not found or has no email address."
+    }
+  },
+  "roles": {
+    "user": "User",
+    "admin": "Admin"
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "intro": "This Privacy Policy describes how Doğukan Ürker's Flask Blog ('we', 'us', or 'our') collects, uses, and discloses your information when you use our mobile application (the 'App').",
+    "information": "Information Collection and Use",
+    "informationText": "When you use our App, we collect and log various types of user activity data, including but not limited to:",
+    "informationUser": "User login data: We collect information related to user login activities for authentication and security purposes.",
+    "informationPost": "Post and comment data: We collect information about posts and comments made within the App for functionality and user engagement purposes.",
+    "informationGeneral": "General user activity: We log various user activities within the App to improve user experience, troubleshoot technical issues, and analyze usage patterns.",
+    "cookies": "Cookies",
+    "cookiesText": "Our App uses cookies to enhance the user experience. The cookies we use include:",
+    "cookiesTheme": "UI theme cookie: We store the user's selected UI theme preference to personalize the appearance of the App.",
+    "cookiesLanguage": "Browser default language: We store the user's browser default language preference to provide localized content.",
+    "serviceProviders": "Service Providers",
+    "serviceProvidersText": "We may employ third-party companies or individuals to facilitate our App or provide services on our behalf. These third parties may have access to your information to perform tasks such as analytics, hosting, and technical support. However, they are obligated not to disclose or use it for any other purpose.",
+    "otherLinks": "Links to Other Sites",
+    "otherLinksText": "Our App may contain links to external sites, including X and Doğukan Ürker's personal site. We are not responsible for the content or privacy practices of such external sites. We encourage users to review the privacy policies of these sites before providing any personal information.",
+    "security": "Security",
+    "securityText": "We take reasonable precautions to protect the information collected through our App. However, lease be aware that no method of transmission over the internet or method of electronic storage is 100% secure, and we cannot guarantee absolute security.",
+    "children": "Children's Privacy",
+    "childrenText": "Our App is not intended for use by individuals under the age of 13. We do not knowingly collect personal identifiable information from children under 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us so that we will be able to take necessary actions.",
+    "changes": "Changes to This Privacy Policy",
+    "changesText": "We may update our Privacy Policy from time to time. Thus, you are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Privacy Policy on this page. These changes are effective immediately after they are posted on this page.",
+    "contact": "Contact Us",
+    "contactText": "If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us. Mail:"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "goToPage": "Go to page",
+    "totalVisitor": "Total Visitor",
+    "todaysVisitor": "Today's Visitor",
+    "category": "Category",
+    "onPosted": "On Posted",
+    "trafficCount": "Traffic Count",
+    "sincePosted": "Since Posted",
+    "last1month": "Last 1m",
+    "last7days": "Last 7d",
+    "last24hours": "Last 24h",
+    "last48hours": "Last 48h",
+    "traffic": "Traffic",
+    "visitorCounts": "Visitor Counts",
+    "computerOS": "Computer OS",
+    "topCountries": "Top Countries",
+    "visitor": "Visitor",
+    "viewAll": "View All"
+  },
+  "adminPanelSecurityAudit": {
+    "title": "Security Audit Log",
+    "noLogs": "No security events found for the selected filter.",
+    "filters": {
+      "all": "All Events",
+      "adminLogins": "Admin Logins",
+      "userLogins": "User Logins",
+      "adminActions": "Admin Actions",
+      "pageAccess": "Page Access",
+      "rateLimits": "Rate Limits"
+    },
+    "eventTypes": {
+      "adminLoginSuccess": "Admin Login Success",
+      "adminLoginFailure": "Admin Login Failure",
+      "userLoginSuccess": "User Login Success",
+      "userLoginFailure": "User Login Failure",
+      "adminAction": "Admin Action",
+      "pageAccess": "Page Access",
+      "rateLimit": "Rate Limit"
+    },
+    "fields": {
+      "user": "User",
+      "ip": "IP Address",
+      "userAgent": "User Agent",
+      "path": "Path",
+      "method": "Method",
+      "status": "Status Code"
+    }
+  },
+  "twofa": {
+    "setupTitle": "Set Up Two-Factor Authentication",
+    "setupInstructions": "Follow these steps to enable two-factor authentication and secure your account.",
+    "step1Title": "Scan QR Code",
+    "step1Description": "Open your authenticator app (Google Authenticator, Authy, etc.) and scan this QR code.",
+    "step2Title": "Save Backup Codes",
+    "step2Description": "Save these backup codes in a secure location. You can use them to access your account if you lose your device.",
+    "step3Title": "Verify Setup",
+    "step3Description": "Enter the 6-digit code from your authenticator app to complete setup.",
+    "manualEntry": "Can't scan? Enter this code manually:",
+    "backupCodesWarning": "Save these codes now! They won't be shown again.",
+    "verificationCode": "Verification Code",
+    "enable": "Enable 2FA",
+    "cancel": "Cancel",
+    "codeFromApp": "Enter the 6-digit code from your authenticator app",
+    "verifyTitle": "Two-Factor Authentication",
+    "verifyDescription": "Enter your authentication code to complete login for",
+    "verify": "Verify and Login",
+    "or": "OR",
+    "useBackupCode": "Use Backup Code",
+    "backupCode": "Backup Code",
+    "backupCodePlaceholder": "XXXX-XXXX",
+    "enabled": "2FA Enabled",
+    "disable": "Disable 2FA",
+    "disableConfirm": "Are you sure you want to disable two-factor authentication? Your account will be less secure.",
+    "enterPassword": "Enter your password to confirm",
+    "setup": "Enable Two-Factor Authentication (2FA)"
+  },
+  "optional": "Optional",
+  "delete": "Delete",
+  "imageGallery": {
+    "galleryTitle": "Gallery",
+    "uploadTitle": "Upload Image",
+    "uploadDescription": "Upload images to your personal gallery",
+    "selectImage": "Select Image",
+    "allowedFormats": "Allowed: JPG, PNG, WEBP (max 5MB)",
+    "imageTitle": "Image Title",
+    "titlePlaceholder": "Enter image title (optional)",
+    "imageDescription": "Image Description",
+    "descriptionPlaceholder": "Enter image description (optional)",
+    "uploadButton": "Upload Image",
+    "backToGallery": "Back to Gallery",
+    "tipsTitle": "Tips",
+    "tip1": "Supported formats: JPG, PNG, WEBP",
+    "tip2": "Maximum file size: 5MB",
+    "tip3": "Add a title and description to make your images more discoverable",
+    "yourGalleryDescription": "Manage your personal image gallery",
+    "viewingGallery": "Viewing public image gallery",
+    "uploadNewImage": "Upload New Image",
+    "noImages": "No Images Yet",
+    "uploadFirstImage": "Upload your first image to get started!",
+    "userHasNoImages": "This user hasn't uploaded any images yet.",
+    "confirmDelete": "Are you sure you want to delete this image? This action cannot be undone.",
+    "galleriesListTitle": "Image Galleries",
+    "galleriesListDescription": "Browse image galleries from our community",
+    "imagesSingular": "image",
+    "imagesPlural": "images",
+    "lastUpdated": "Last updated",
+    "viewGallery": "View Gallery",
+    "noGalleries": "No Galleries Yet",
+    "beFirstToUpload": "Be the first to create a gallery and share your images!",
+    "yourGallery": "Your Gallery"
   }
-},
-"twofa": {
-  "setupTitle": "Set Up Two-Factor Authentication",
-  "setupInstructions": "Follow these steps to enable two-factor authentication and secure your account.",
-  "step1Title": "Scan QR Code",
-  "step1Description": "Open your authenticator app (Google Authenticator, Authy, etc.) and scan this QR code.",
-  "step2Title": "Save Backup Codes",
-  "step2Description": "Save these backup codes in a secure location. You can use them to access your account if you lose your device.",
-  "step3Title": "Verify Setup",
-  "step3Description": "Enter the 6-digit code from your authenticator app to complete setup.",
-  "manualEntry": "Can't scan? Enter this code manually:",
-  "backupCodesWarning": "Save these codes now! They won't be shown again.",
-  "verificationCode": "Verification Code",
-  "enable": "Enable 2FA",
-  "cancel": "Cancel",
-  "codeFromApp": "Enter the 6-digit code from your authenticator app",
-  "verifyTitle": "Two-Factor Authentication",
-  "verifyDescription": "Enter your authentication code to complete login for",
-  "verify": "Verify and Login",
-  "or": "OR",
-  "useBackupCode": "Use Backup Code",
-  "backupCode": "Backup Code",
-  "backupCodePlaceholder": "XXXX-XXXX",
-  "enabled": "2FA Enabled",
-  "disable": "Disable 2FA",
-  "disableConfirm": "Are you sure you want to disable two-factor authentication? Your account will be less secure.",
-  "enterPassword": "Enter your password to confirm",
-  "setup": "Enable Two-Factor Authentication (2FA)"
-},
-"optional": "Optional",
-"delete": "Delete",
-"imageGallery": {
-  "galleryTitle": "Gallery",
-  "uploadTitle": "Upload Image",
-  "uploadDescription": "Upload images to your personal gallery",
-  "selectImage": "Select Image",
-  "allowedFormats": "Allowed: JPG, PNG, WEBP (max 5MB)",
-  "imageTitle": "Image Title",
-  "titlePlaceholder": "Enter image title (optional)",
-  "imageDescription": "Image Description",
-  "descriptionPlaceholder": "Enter image description (optional)",
-  "uploadButton": "Upload Image",
-  "backToGallery": "Back to Gallery",
-  "tipsTitle": "Tips",
-  "tip1": "Supported formats: JPG, PNG, WEBP",
-  "tip2": "Maximum file size: 5MB",
-  "tip3": "Add a title and description to make your images more discoverable",
-  "yourGalleryDescription": "Manage your personal image gallery",
-  "viewingGallery": "Viewing public image gallery",
-  "uploadNewImage": "Upload New Image",
-  "noImages": "No Images Yet",
-  "uploadFirstImage": "Upload your first image to get started!",
-  "userHasNoImages": "This user hasn't uploaded any images yet.",
-  "confirmDelete": "Are you sure you want to delete this image? This action cannot be undone.",
-  "galleriesListTitle": "Image Galleries",
-  "galleriesListDescription": "Browse image galleries from our community",
-  "imagesSingular": "image",
-  "imagesPlural": "images",
-  "lastUpdated": "Last updated",
-  "viewGallery": "View Gallery",
-  "noGalleries": "No Galleries Yet",
-  "beFirstToUpload": "Be the first to create a gallery and share your images!",
-  "yourGallery": "Your Gallery"
-}
 }
