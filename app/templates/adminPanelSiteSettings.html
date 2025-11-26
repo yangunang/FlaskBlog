@@ -2,386 +2,320 @@
 
 {% block head %}
 <title>Site Settings - Admin Panel</title>
+<style>
+    .bg-checker {
+        background-image: linear-gradient(45deg, #e5e7eb 25%, transparent 25%),
+            linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, #e5e7eb 75%),
+            linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+        background-size: 20px 20px;
+        background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    }
+
+    [data-theme='dark'] .bg-checker {
+        background-image: linear-gradient(45deg, #1f2937 25%, transparent 25%),
+            linear-gradient(-45deg, #1f2937 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, #1f2937 75%),
+            linear-gradient(-45deg, transparent 75%, #1f2937 75%);
+    }
+</style>
 {% endblock head %}
 
 {% block body %}
-<div class="container mx-auto px-4 py-8 max-w-6xl">
-    <!-- Page Header -->
-    <div class="flex items-center justify-between mb-8">
-        <h1 class="text-3xl font-bold text-rose-500">
-            <i class="ti ti-settings mr-2"></i>
-            Site Settings
-        </h1>
-        <a href="/admin" class="btn btn-ghost">
-            <i class="ti ti-arrow-left mr-2"></i>
-            Back to Admin Panel
-        </a>
-    </div>
-
-    <!-- Site Logo Section -->
-    <h2 class="text-2xl font-bold mb-4">
-        <i class="ti ti-photo mr-2"></i>
-        Site Logo
-    </h2>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <!-- Current Logo Display -->
-        <div class="card bg-base-100 shadow-xl h-full">
-            <div class="card-body">
-                <h3 class="card-title text-lg mb-4">
-                    <i class="ti ti-eye mr-2"></i>
-                    Current Logo
-                </h3>
-
-                <div class="flex justify-center items-center p-6 bg-base-100 rounded-lg">
-                    <img
-                        src="{{ currentLogo }}"
-                        alt="Current Site Logo"
-                        class="max-w-xs max-h-40 object-contain rounded shadow-lg"
-                    />
-                </div>
-
-                <div class="mt-4 text-center">
-                    <p class="text-sm opacity-75">
-                        <i class="ti ti-info-circle mr-1"></i>
-                        Path: <code class="bg-base-300 px-2 py-1 rounded text-xs">{{ currentLogo }}</code>
-                    </p>
-                </div>
+<div class="container mx-auto px-4 py-8 max-w-7xl">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+        <div>
+            <div class="text-sm breadcrumbs mb-1">
+                <ul>
+                    <li><a href="/admin" class="opacity-70 hover:opacity-100">Admin</a></li>
+                    <li class="font-bold">Settings</li>
+                </ul>
             </div>
+            <h1 class="text-4xl font-extrabold tracking-tight">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+                    Site Settings
+                </span>
+            </h1>
+            <p class="text-base-content/70 mt-2">Manage your site's branding and system configurations.</p>
         </div>
-
-        <!-- Upload New Logo Form -->
-        <div class="card bg-base-200 shadow-xl h-full">
-            <div class="card-body">
-                <h3 class="card-title text-lg mb-4">
-                    <i class="ti ti-upload mr-2"></i>
-                    Upload New Logo
-                </h3>
-
-                <form method="POST" enctype="multipart/form-data" class="space-y-4">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                    <input type="hidden" name="upload_type" value="site_logo" />
-
-                    <div class="form-control">
-                        <input
-                            type="file"
-                            name="site_logo"
-                            accept=".ico,.png,.jpg,.jpeg,.webp"
-                            class="file-input file-input-bordered file-input-primary w-full"
-                            required
-                        />
-                        <label class="label">
-                            <span class="label-text-alt">
-                                <i class="ti ti-info-circle mr-1"></i>
-                                .ico, .png, .jpg, .jpeg, .webp (180x180px)
-                            </span>
-                        </label>
-                    </div>
-
-                    <div class="card-actions justify-end">
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="ti ti-upload mr-2"></i>
-                            Upload
-                        </button>
-                    </div>
-                </form>
-            </div>
+        <div class="flex gap-2">
+            <a href="/admin" class="btn btn-ghost gap-2">
+                <i class="ti ti-arrow-left"></i>
+                Back to Dashboard
+            </a>
         </div>
     </div>
 
-    <!-- Default Profile Picture Section -->
-    <h2 class="text-2xl font-bold mb-4">
-        <i class="ti ti-user-circle mr-2"></i>
-        Default Profile Picture
-    </h2>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <!-- Current Default Profile Picture Display -->
-        <div class="card bg-base-100 shadow-xl h-full">
-            <div class="card-body">
-                <h3 class="card-title text-lg mb-4">
-                    <i class="ti ti-eye mr-2"></i>
-                    Current Picture
-                </h3>
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
 
-                {% if currentDefaultProfile %}
-                <div class="flex justify-center items-center p-6 bg-base-100 rounded-lg">
-                    <img
-                        src="{{ currentDefaultProfile }}"
-                        alt="Current Default Profile Picture"
-                        class="max-w-xs max-h-40 object-contain rounded-full shadow-lg"
-                    />
-                </div>
+        <!-- LEFT COLUMN: BRANDING (2/3 width on large screens) -->
+        <div class="xl:col-span-2 space-y-8">
 
-                <div class="mt-4 text-center">
-                    <p class="text-sm opacity-75">
-                        <i class="ti ti-info-circle mr-1"></i>
-                        Path: <code class="bg-base-300 px-2 py-1 rounded text-xs">{{ currentDefaultProfile }}</code>
-                    </p>
+            <!-- Site Logo -->
+            <div class="card bg-base-100 shadow-xl border border-base-200">
+                <div class="card-body">
+                    <h2 class="card-title text-2xl mb-6 flex items-center gap-2">
+                        <div class="p-2 bg-primary/10 rounded-lg text-primary">
+                            <i class="ti ti-photo"></i>
+                        </div>
+                        Site Logo
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-8 items-start">
+                        <!-- Current -->
+                        <div class="space-y-3">
+                            <span class="label-text font-bold uppercase tracking-wider text-xs opacity-70">Current
+                                Logo</span>
+                            <div
+                                class="bg-base-200 bg-checker rounded-xl p-8 flex items-center justify-center min-h-[200px] border border-base-300 border-dashed">
+                                <img src="{{ currentLogo }}" alt="Current Site Logo"
+                                    class="max-w-full max-h-32 object-contain drop-shadow-md transition-transform hover:scale-105 duration-300" />
+                            </div>
+                            <div class="text-xs text-center opacity-50 font-mono truncate px-2">
+                                {{ currentLogo }}
+                            </div>
+                        </div>
+
+                        <!-- Upload -->
+                        <div class="space-y-4">
+                            <span class="label-text font-bold uppercase tracking-wider text-xs opacity-70">Update
+                                Logo</span>
+                            <form method="POST" enctype="multipart/form-data"
+                                class="bg-base-200/50 p-6 rounded-xl border border-base-200">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                <input type="hidden" name="upload_type" value="site_logo" />
+
+                                <div class="form-control w-full">
+                                    <label class="label">
+                                        <span class="label-text">Select Image</span>
+                                    </label>
+                                    <input type="file" name="site_logo" accept=".ico,.png,.jpg,.jpeg,.webp"
+                                        class="file-input file-input-bordered file-input-primary w-full" required />
+                                    <label class="label">
+                                        <span class="label-text-alt text-base-content/60">Recommended: 180x180px (.png,
+                                            .ico)</span>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary w-full mt-4 gap-2">
+                                    <i class="ti ti-upload"></i> Update Logo
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                {% else %}
-                <div class="alert alert-warning">
-                    <i class="ti ti-alert-circle"></i>
-                    <span class="text-sm">No default profile picture set. Using DiceBear avatars.</span>
-                </div>
-                {% endif %}
             </div>
+
+            <!-- Default Profile Picture -->
+            <div class="card bg-base-100 shadow-xl border border-base-200">
+                <div class="card-body">
+                    <h2 class="card-title text-2xl mb-6 flex items-center gap-2">
+                        <div class="p-2 bg-secondary/10 rounded-lg text-secondary">
+                            <i class="ti ti-user-circle"></i>
+                        </div>
+                        Default User Avatar
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-8 items-start">
+                        <!-- Current -->
+                        <div class="space-y-3">
+                            <span class="label-text font-bold uppercase tracking-wider text-xs opacity-70">Current
+                                Avatar</span>
+                            <div
+                                class="bg-base-200 bg-checker rounded-xl p-8 flex items-center justify-center min-h-[200px] border border-base-300 border-dashed">
+                                {% if currentDefaultProfile %}
+                                <img src="{{ currentDefaultProfile }}" alt="Default Profile"
+                                    class="w-32 h-32 rounded-full object-cover shadow-lg ring-4 ring-base-100" />
+                                {% else %}
+                                <div class="text-center opacity-60">
+                                    <i class="ti ti-ghost text-4xl mb-2"></i>
+                                    <p>No custom default set</p>
+                                    <p class="text-xs">Using DiceBear generation</p>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Upload -->
+                        <div class="space-y-4">
+                            <span class="label-text font-bold uppercase tracking-wider text-xs opacity-70">Update
+                                Avatar</span>
+                            <form method="POST" enctype="multipart/form-data"
+                                class="bg-base-200/50 p-6 rounded-xl border border-base-200">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                <input type="hidden" name="upload_type" value="default_profile_picture" />
+
+                                <div class="form-control w-full">
+                                    <label class="label">
+                                        <span class="label-text">Select Image</span>
+                                    </label>
+                                    <input type="file" name="default_profile_picture" accept="image/*"
+                                        class="file-input file-input-bordered file-input-secondary w-full" required />
+                                    <label class="label">
+                                        <span class="label-text-alt text-base-content/60">Recommended: 200x200px
+                                            Square</span>
+                                    </label>
+                                </div>
+
+                                <button type="submit" class="btn btn-secondary w-full mt-4 gap-2">
+                                    <i class="ti ti-upload"></i> Update Avatar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Default Banner -->
+            <div class="card bg-base-100 shadow-xl border border-base-200">
+                <div class="card-body">
+                    <h2 class="card-title text-2xl mb-6 flex items-center gap-2">
+                        <div class="p-2 bg-accent/10 rounded-lg text-accent">
+                            <i class="ti ti-photo-edit"></i>
+                        </div>
+                        Default Profile Banner
+                    </h2>
+
+                    <div class="space-y-6">
+                        <!-- Current -->
+                        <div class="relative group rounded-xl overflow-hidden shadow-lg bg-base-300 h-48 w-full">
+                            {% if currentDefaultBanner %}
+                            <img src="{{ currentDefaultBanner }}" alt="Default Banner"
+                                class="w-full h-full object-cover" />
+                            <div
+                                class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-white font-bold">Current Default Banner</span>
+                            </div>
+                            {% else %}
+                            <div class="flex flex-col items-center justify-center h-full text-base-content/50">
+                                <i class="ti ti-photo-off text-4xl mb-2"></i>
+                                <span>No default banner set</span>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Upload -->
+                        <form method="POST" enctype="multipart/form-data"
+                            class="flex flex-col sm:flex-row gap-4 items-end bg-base-200/50 p-4 rounded-xl">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                            <input type="hidden" name="upload_type" value="default_banner" />
+
+                            <div class="form-control w-full">
+                                <label class="label">
+                                    <span class="label-text font-bold">Upload New Banner</span>
+                                    <span class="label-text-alt">1500x500px (3:1)</span>
+                                </label>
+                                <input type="file" name="default_banner" accept="image/*"
+                                    class="file-input file-input-bordered file-input-accent w-full" required />
+                            </div>
+
+                            <button type="submit" class="btn btn-accent gap-2">
+                                <i class="ti ti-upload"></i> Upload
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <!-- Upload Default Profile Picture Form -->
-        <div class="card bg-base-200 shadow-xl h-full">
-            <div class="card-body">
-                <h3 class="card-title text-lg mb-4">
-                    <i class="ti ti-upload mr-2"></i>
-                    Upload New Picture
-                </h3>
+        <!-- RIGHT COLUMN: CONFIGURATION (1/3 width) -->
+        <div class="xl:col-span-1 space-y-8">
 
-                <form method="POST" enctype="multipart/form-data" class="space-y-4">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                    <input type="hidden" name="upload_type" value="default_profile_picture" />
+            <!-- SMTP Configuration -->
+            <div class="card bg-base-100 shadow-xl border border-base-200 sticky top-8">
+                <div class="card-body p-6">
+                    <h2 class="card-title text-xl mb-4 flex items-center gap-2">
+                        <div class="p-2 bg-info/10 rounded-lg text-info">
+                            <i class="ti ti-mail-cog"></i>
+                        </div>
+                        SMTP Settings
+                    </h2>
 
-                    <div class="form-control">
-                        <input
-                            type="file"
-                            name="default_profile_picture"
-                            accept="image/jpeg,image/jpg,image/png,image/webp"
-                            class="file-input file-input-bordered file-input-primary w-full"
-                            required
-                        />
-                        <label class="label">
-                            <span class="label-text-alt">
-                                <i class="ti ti-info-circle mr-1"></i>
-                                .jpg, .jpeg, .png, .webp (200x200px square)
-                            </span>
-                        </label>
-                    </div>
+                    <form method="POST" class="space-y-4">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <input type="hidden" name="upload_type" value="smtp_config" />
 
-                    <div class="card-actions justify-end">
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="ti ti-upload mr-2"></i>
-                            Upload
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Default Banner Section -->
-    <h2 class="text-2xl font-bold mb-4">
-        <i class="ti ti-photo mr-2"></i>
-        Default Profile Banner
-    </h2>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <!-- Current Default Banner Display - Full width for better preview -->
-        <div class="card bg-base-100 shadow-xl lg:col-span-2">
-            <div class="card-body">
-                <h3 class="card-title text-lg mb-4">
-                    <i class="ti ti-eye mr-2"></i>
-                    Current Banner
-                </h3>
-
-                {% if currentDefaultBanner %}
-                <div class="flex justify-center items-center p-6 bg-base-200 rounded-lg">
-                    <img
-                        src="{{ currentDefaultBanner }}"
-                        alt="Current Default Banner"
-                        class="w-full max-h-48 object-contain rounded shadow-lg"
-                    />
-                </div>
-
-                <div class="mt-4 text-center">
-                    <p class="text-sm opacity-75">
-                        <i class="ti ti-info-circle mr-1"></i>
-                        Path: <code class="bg-base-300 px-2 py-1 rounded text-xs">{{ currentDefaultBanner }}</code>
-                    </p>
-                </div>
-                {% else %}
-                <div class="alert alert-warning">
-                    <i class="ti ti-alert-circle"></i>
-                    <span class="text-sm">No default banner set.</span>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-
-        <!-- Upload Default Banner Form - Full width -->
-        <div class="card bg-base-200 shadow-xl lg:col-span-2">
-            <div class="card-body">
-                <h3 class="card-title text-lg mb-4">
-                    <i class="ti ti-upload mr-2"></i>
-                    Upload New Banner
-                </h3>
-
-                <form method="POST" enctype="multipart/form-data" class="space-y-4">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                    <input type="hidden" name="upload_type" value="default_banner" />
-
-                    <div class="form-control">
-                        <input
-                            type="file"
-                            name="default_banner"
-                            accept="image/jpeg,image/jpg,image/png,image/webp"
-                            class="file-input file-input-bordered file-input-primary w-full"
-                            required
-                        />
-                        <label class="label">
-                            <span class="label-text-alt">
-                                <i class="ti ti-info-circle mr-1"></i>
-                                .jpg, .jpeg, .png, .webp (1500x500px, 3:1 ratio)
-                            </span>
-                        </label>
-                    </div>
-
-                    <div class="card-actions justify-end">
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="ti ti-upload mr-2"></i>
-                            Upload
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- SMTP Configuration Section -->
-    <h2 class="text-2xl font-bold mb-4">
-        <i class="ti ti-mail-cog mr-2"></i>
-        SMTP Configuration
-    </h2>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <!-- SMTP Settings Form -->
-        <div class="card bg-base-100 shadow-xl h-full">
-            <div class="card-body">
-                <h3 class="card-title text-lg mb-4">
-                    <i class="ti ti-settings mr-2"></i>
-                    Settings
-                </h3>
-
-                <form method="POST" class="space-y-4">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                    <input type="hidden" name="upload_type" value="smtp_config" />
-
-                    <div class="grid grid-cols-2 gap-4">
                         <div class="form-control">
                             <label class="label">
-                                <span class="label-text font-semibold text-sm">Server</span>
+                                <span class="label-text">SMTP Server</span>
                             </label>
-                            <input
-                                type="text"
-                                name="smtp_server"
-                                value="{{ smtpServer }}"
-                                placeholder="smtp.gmail.com"
-                                class="input input-bordered input-sm w-full"
-                            />
+                            <div class="relative">
+                                <input type="text" name="smtp_server" value="{{ smtpServer }}"
+                                    placeholder="smtp.gmail.com" class="input input-bordered w-full pl-10" />
+                                <i class="ti ti-server absolute left-3 top-3 text-base-content/50"></i>
+                            </div>
                         </div>
 
                         <div class="form-control">
                             <label class="label">
-                                <span class="label-text font-semibold text-sm">Port</span>
+                                <span class="label-text">Port</span>
                             </label>
-                            <input
-                                type="number"
-                                name="smtp_port"
-                                value="{{ smtpPort }}"
-                                placeholder="587"
-                                min="1"
-                                max="65535"
-                                class="input input-bordered input-sm w-full"
-                            />
+                            <div class="relative">
+                                <input type="number" name="smtp_port" value="{{ smtpPort }}" placeholder="587"
+                                    class="input input-bordered w-full pl-10" />
+                                <i class="ti ti-numbers absolute left-3 top-3 text-base-content/50"></i>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text font-semibold text-sm">Email</span>
-                        </label>
-                        <input
-                            type="email"
-                            name="smtp_mail"
-                            value="{{ smtpMail }}"
-                            placeholder="your-email@gmail.com"
-                            class="input input-bordered input-sm w-full"
-                        />
-                    </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Email Address</span>
+                            </label>
+                            <div class="relative">
+                                <input type="email" name="smtp_mail" value="{{ smtpMail }}"
+                                    placeholder="system@example.com" class="input input-bordered w-full pl-10" />
+                                <i class="ti ti-mail absolute left-3 top-3 text-base-content/50"></i>
+                            </div>
+                        </div>
 
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text font-semibold text-sm">Password</span>
-                        </label>
-                        <input
-                            type="password"
-                            name="smtp_password"
-                            placeholder="Enter new password"
-                            class="input input-bordered input-sm w-full"
-                        />
-                        {% if smtpPasswordSet %}
-                        <label class="label">
-                            <span class="label-text-alt text-success">
-                                <i class="ti ti-check mr-1"></i>
-                                Password is set
-                            </span>
-                        </label>
-                        {% endif %}
-                    </div>
+                        <div class="form-control">
+                            <label class="label">
+                                <span class="label-text">Password / App Key</span>
+                            </label>
+                            <div class="relative">
+                                <input type="password" name="smtp_password" placeholder="••••••••••••"
+                                    class="input input-bordered w-full pl-10" />
+                                <i class="ti ti-lock absolute left-3 top-3 text-base-content/50"></i>
+                            </div>
+                            {% if smtpPasswordSet %}
+                            <label class="label">
+                                <span class="label-text-alt text-success flex items-center gap-1">
+                                    <i class="ti ti-check-circle"></i> Password is currently set
+                                </span>
+                            </label>
+                            {% endif %}
+                        </div>
 
-                    <div class="card-actions justify-end">
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="ti ti-device-floppy mr-2"></i>
-                            Save
+                        <button type="submit" class="btn btn-info btn-block mt-4">
+                            <i class="ti ti-device-floppy"></i> Save Configuration
                         </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                    </form>
 
-        <!-- Test SMTP Section -->
-        <div class="card bg-base-200 shadow-xl h-full">
-            <div class="card-body">
-                <h3 class="card-title text-lg mb-4">
-                    <i class="ti ti-mail-check mr-2"></i>
-                    Test Configuration
-                </h3>
+                    <div class="divider">Test</div>
 
-                <form method="POST" class="space-y-4">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                    <input type="hidden" name="upload_type" value="smtp_test" />
+                    <!-- Test SMTP -->
+                    <form method="POST" class="space-y-3">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                        <input type="hidden" name="upload_type" value="smtp_test" />
 
-                    <div class="form-control">
-                        <label class="label">
-                            <span class="label-text font-semibold text-sm">Recipient Email</span>
-                        </label>
-                        <input
-                            type="email"
-                            name="test_email"
-                            placeholder="Enter email address"
-                            class="input input-bordered input-sm w-full"
-                            required
-                        />
-                    </div>
+                        <div class="alert alert-warning text-xs shadow-sm">
+                            <i class="ti ti-alert-triangle"></i>
+                            <span>Use App Password for Gmail</span>
+                        </div>
 
-                    <div class="alert alert-warning text-sm py-2">
-                        <i class="ti ti-alert-triangle"></i>
-                        <span>For Gmail, use an App Password instead of your regular password.</span>
-                    </div>
-
-                    <div class="card-actions justify-end">
-                        <button type="submit" class="btn btn-secondary btn-sm">
-                            <i class="ti ti-send mr-2"></i>
-                            Send Test
-                        </button>
-                    </div>
-                </form>
-
-                <div class="divider my-2"></div>
-
-                <div class="text-sm opacity-75">
-                    <p class="font-semibold mb-1">SMTP Usage:</p>
-                    <ul class="list-disc list-inside space-y-1 text-xs">
-                        <li>Password reset emails</li>
-                        <li>Account verification</li>
-                        <li>System notifications</li>
-                    </ul>
+                        <div class="join w-full">
+                            <input type="email" name="test_email" placeholder="Test recipient..."
+                                class="input input-bordered input-sm join-item w-full" required />
+                            <button type="submit" class="btn btn-sm btn-neutral join-item">
+                                <i class="ti ti-send"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
