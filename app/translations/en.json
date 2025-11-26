@@ -388,7 +388,8 @@
       "password": "Wrong password",
       "notFound": "User not found",
       "invalid": "Invalid username or password.",
-      "mustChangePassword": "You must change your password before continuing."
+      "mustChangePassword": "You must change your password before continuing.",
+      "2faRequired": "Please enter your two-factor authentication code."
     },
     "forceChangePassword": {
       "success": "Password has been changed successfully. You can now access the site.",
@@ -472,6 +473,11 @@
       "incorrectPassword": "Incorrect password. Please try again.",
       "notEnabled": "Two-factor authentication is not enabled.",
       "disabled": "Two-factor authentication has been disabled successfully."
+    },
+    "verify2fa": {
+      "tokenRequired": "Please enter your verification code.",
+      "success": "Two-factor authentication verified successfully.",
+      "invalidToken": "Invalid verification code. Please try again."
     },
     "adminPanelUsers": {
       "reset2faEmailSent": "2FA reset email has been sent to the user.",
