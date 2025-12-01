@@ -164,7 +164,6 @@ from utils.generateUrlIdFromPost import getSlugFromPostTitle
 from utils.log import Log
 from utils.terminalASCII import terminalASCII
 from utils.time import currentTimeStamp
-from utils.rateLimiter import RateLimiter
 
 startTime = currentTimeStamp()
 
@@ -208,7 +207,6 @@ app.context_processor(injectTranslations)
 app.context_processor(markdown_processor)
 app.before_request(browserLanguage)
 app.before_request(forcePasswordChangeCheck)
-app.before_request(RateLimiter.check_request_limit)
 app.jinja_env.globals.update(getSlugFromPostTitle=getSlugFromPostTitle)
 
 if Settings.WERKZEUG_LOGGER:

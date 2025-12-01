@@ -112,495 +112,387 @@
                     </button>
                     <button onclick="showTab('about')"
                         class="tab-btn btn btn-ghost justify-start gap-3 w-full hover:bg-base-200 text-base-content/70">
-                        <!-- Main Content Area -->
-                        <div class="lg:col-span-9 space-y-6">
+                        <i class="ti ti-info-circle text-lg"></i>
+                        About Page
+                    </button>
+                    <button onclick="showTab('smtp')"
+                        class="tab-btn btn btn-ghost justify-start gap-3 w-full hover:bg-base-200 text-base-content/70">
+                        <i class="ti ti-mail-cog text-lg"></i>
+                        SMTP System
+                    </button>
+                </div>
+            </div>
+        </div>
 
-                            <!-- BRANDING SECTION -->
-                            <div id="branding" class="tab-content-section animate-fade-in">
-                                <div class="card bg-base-100 shadow-xl border border-base-200">
-                                    <div class="card-body">
-                                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
-                                            <div class="p-3 bg-primary/10 rounded-xl text-primary">
-                                                <i class="ti ti-photo text-2xl"></i>
-                                            </div>
-                                            <div>
-                                                <h2 class="text-2xl font-bold">Site Logo</h2>
-                                                <p class="text-sm opacity-70">Update the main logo displayed in the
-                                                    navigation bar.</p>
-                                            </div>
-                                        </div>
+        <!-- Main Content Area -->
+        <div class="lg:col-span-9 space-y-6">
 
-                                        <div class="grid md:grid-cols-2 gap-8">
-                                            <!-- Current Logo -->
-                                            <div class="space-y-3">
-                                                <span
-                                                    class="label-text font-bold uppercase tracking-wider text-xs opacity-70">Current
-                                                    Preview</span>
-                                                <div
-                                                    class="bg-base-200 bg-checker rounded-xl p-8 flex items-center justify-center h-64 border border-base-300 border-dashed relative group">
-                                                    <img src="{{ currentLogo }}" alt="Current Site Logo"
-                                                        class="max-w-full max-h-40 object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-110" />
-                                                    <div
-                                                        class="absolute bottom-2 right-2 badge badge-ghost text-xs font-mono opacity-50">
-                                                        {{ currentLogo }}</div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Upload Form -->
-                                            <div class="space-y-4">
-                                                <span
-                                                    class="label-text font-bold uppercase tracking-wider text-xs opacity-70">Upload
-                                                    New</span>
-                                                <form method="POST" enctype="multipart/form-data"
-                                                    class="h-full flex flex-col justify-between">
-                                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                                                    <input type="hidden" name="upload_type" value="site_logo" />
-
-                                                    <div class="form-control w-full flex-grow">
-                                                        <div
-                                                            class="border-2 border-dashed border-base-300 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:border-primary hover:bg-base-200/50 transition-all cursor-pointer relative h-full">
-                                                            <i
-                                                                class="ti ti-cloud-upload text-4xl text-base-content/30 mb-3"></i>
-                                                            <p class="font-bold">Click to browse or drag file</p>
-                                                            <p class="text-xs opacity-60 mt-1">Supports .ico, .png,
-                                                                .jpg, .webp</p>
-                                                            <p class="text-xs opacity-60">Recommended: 180x180px</p>
-                                                            <input type="file" name="site_logo"
-                                                                accept=".ico,.png,.jpg,.jpeg,.webp"
-                                                                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                                                                required />
-                                                        </div>
-                                                    </div>
-
-                                                    <button type="submit" class="btn btn-primary w-full mt-4 gap-2">
-                                                        <i class="ti ti-device-floppy"></i> Save New Logo
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+            <!-- BRANDING SECTION -->
+            <div id="branding" class="tab-content-section animate-fade-in">
+                <div class="card bg-base-100 shadow-xl border border-base-200">
+                    <div class="card-body">
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
+                            <div class="p-3 bg-primary/10 rounded-xl text-primary">
+                                <i class="ti ti-photo text-2xl"></i>
                             </div>
-
-                            <!-- DEFAULTS SECTION -->
-                            <div id="defaults" class="tab-content-section hidden">
-                                <div class="grid gap-8">
-                                    <!-- Profile Picture -->
-                                    <div class="card bg-base-100 shadow-xl border border-base-200">
-                                        <div class="card-body">
-                                            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
-                                                <div class="p-3 bg-secondary/10 rounded-xl text-secondary">
-                                                    <i class="ti ti-user-circle text-2xl"></i>
-                                                </div>
-                                                <div>
-                                                    <h2 class="text-2xl font-bold">Default User Avatar</h2>
-                                                    <p class="text-sm opacity-70">Fallback image for users without a
-                                                        profile picture.
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex flex-col md:flex-row gap-8 items-center">
-                                                <div class="flex-shrink-0">
-                                                    <div class="avatar placeholder">
-                                                        <div
-                                                            class="bg-base-200 bg-checker rounded-full w-40 h-40 ring ring-base-300 ring-offset-base-100 ring-offset-2 overflow-hidden flex items-center justify-center">
-                                                            {% if currentDefaultProfile %}
-                                                            <img src="{{ currentDefaultProfile }}"
-                                                                alt="Default Profile" />
-                                                            {% else %}
-                                                            <span class="text-3xl opacity-50"><i
-                                                                    class="ti ti-user"></i></span>
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                    {% if not currentDefaultProfile %}
-                                                    <div class="text-center mt-2 text-xs opacity-60">Using DiceBear
-                                                    </div>
-                                                    {% endif %}
-                                                </div>
-
-                                                <form method="POST" enctype="multipart/form-data"
-                                                    class="flex-grow w-full">
-                                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                                                    <input type="hidden" name="upload_type"
-                                                        value="default_profile_picture" />
-
-                                                    <div class="form-control w-full">
-                                                        <label class="label">
-                                                            <span class="label-text font-semibold">Upload Image</span>
-                                                        </label>
-                                                        <input type="file" name="default_profile_picture"
-                                                            accept="image/*"
-                                                            class="file-input file-input-bordered file-input-secondary w-full"
-                                                            required />
-                                                        <label class="label">
-                                                            <span class="label-text-alt opacity-60">Square ratio (1:1)
-                                                                recommended. Max
-                                                                2MB.</span>
-                                                        </label>
-                                                    </div>
-                                                    <button type="submit" class="btn btn-secondary mt-2">
-                                                        <i class="ti ti-upload"></i> Update Avatar
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Profile Banner -->
-                                    <div class="card bg-base-100 shadow-xl border border-base-200">
-                                        <div class="card-body">
-                                            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
-                                                <div class="p-3 bg-accent/10 rounded-xl text-accent">
-                                                    <i class="ti ti-photo-edit text-2xl"></i>
-                                                </div>
-                                                <div>
-                                                    <h2 class="text-2xl font-bold">Default Profile Banner</h2>
-                                                    <p class="text-sm opacity-70">Background header for user profiles.
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            <div class="space-y-6">
-                                                <div
-                                                    class="relative w-full h-48 bg-base-300 rounded-xl overflow-hidden shadow-inner group">
-                                                    {% if currentDefaultBanner %}
-                                                    <img src="{{ currentDefaultBanner }}"
-                                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                                        alt="Default Banner">
-                                                    {% else %}
-                                                    <div class="flex items-center justify-center h-full opacity-30">
-                                                        <span class="text-lg font-bold uppercase tracking-widest">No
-                                                            Banner Set</span>
-                                                    </div>
-                                                    {% endif %}
-                                                    <div
-                                                        class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60">
-                                                    </div>
-                                                    <div
-                                                        class="absolute bottom-4 left-4 text-white font-bold text-shadow">
-                                                        Preview</div>
-                                                </div>
-
-                                                <form method="POST" enctype="multipart/form-data"
-                                                    class="flex gap-4 items-end">
-                                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                                                    <input type="hidden" name="upload_type" value="default_banner" />
-
-                                                    <div class="form-control flex-grow">
-                                                        <input type="file" name="default_banner" accept="image/*"
-                                                            class="file-input file-input-bordered file-input-accent w-full"
-                                                            required />
-                                                    </div>
-                                                    <button type="submit" class="btn btn-accent">
-                                                        <i class="ti ti-upload"></i> Upload
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div>
+                                <h2 class="text-2xl font-bold">Site Logo</h2>
+                                <p class="text-sm opacity-70">Update the main logo displayed in the navigation bar.</p>
                             </div>
-
-                            <!-- ABOUT PAGE SECTION -->
-                            <div id="about" class="tab-content-section hidden">
-                                <div class="card bg-base-100 shadow-xl border border-base-200">
-                                    <div class="card-body">
-                                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
-                                            <div class="p-3 bg-info/10 rounded-xl text-info">
-                                                <i class="ti ti-info-circle text-2xl"></i>
-                                            </div>
-                                            <div>
-                                                <h2 class="text-2xl font-bold">About Page Content</h2>
-                                                <p class="text-sm opacity-70">Customize the content and links on the
-                                                    public /about page.
-                                                </p>
-                                            </div>
-                                            <a href="/about" target="_blank" class="btn btn-sm btn-ghost ml-auto">
-                                                View Page <i class="ti ti-external-link"></i>
-                                            </a>
-                                        </div>
-
-                                        <form method="POST" class="space-y-6">
-                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                                            <input type="hidden" name="upload_type" value="about_settings" />
-
-                                            <div class="grid md:grid-cols-2 gap-6">
-                                                <div class="form-control">
-                                                    <label class="label"><span class="label-text font-bold">Page
-                                                            Title</span></label>
-                                                    <input type="text" name="about_title" value="{{ aboutTitle }}"
-                                                        placeholder="Default: {{ appName }}"
-                                                        class="input input-bordered focus:input-primary" />
-                                                </div>
-                                                <div class="form-control">
-                                                    <label class="label"><span class="label-text font-bold">Credits
-                                                            Text</span></label>
-                                                    <input type="text" name="about_credits" value="{{ aboutCredits }}"
-                                                        placeholder="e.g. Made with love"
-                                                        class="input input-bordered focus:input-primary" />
-                                                </div>
-                                            </div>
-
-                                            <div class="form-control">
-                                                <label class="label"><span class="label-text font-bold">Main
-                                                        Content</span></label>
-                                                <textarea name="about_content" rows="8"
-                                                    class="textarea textarea-bordered focus:textarea-primary font-mono text-sm leading-relaxed"
-                                                    placeholder="# About Us\n\nWrite your content here using Markdown...">{{ aboutContent }}</textarea>
-                                                <label class="label"><span class="label-text-alt opacity-60"><i
-                                                            class="ti ti-markdown"></i> Markdown
-                                                        supported</span></label>
-                                            </div>
-
-                                            <div class="divider">Links & Display</div>
-
-                                            <div class="grid md:grid-cols-2 gap-6">
-                                                <div class="form-control">
-                                                    <label class="label"><span class="label-text font-bold">GitHub
-                                                            URL</span></label>
-                                                    <div class="relative">
-                                                        <i
-                                                            class="ti ti-brand-github absolute left-3 top-3 opacity-50"></i>
-                                                        <input type="url" name="about_github_url"
-                                                            value="{{ aboutGithubUrl }}"
-                                                            class="input input-bordered w-full pl-10"
-                                                            placeholder="https://github.com/..." />
-                                                    </div>
-                                                </div>
-                                                <div class="form-control">
-                                                    <label class="label"><span class="label-text font-bold">Author
-                                                            Website</span></label>
-                                                    <div class="relative">
-                                                        <i class="ti ti-world absolute left-3 top-3 opacity-50"></i>
-                                                        <input type="url" name="about_author_url"
-                                                            value="{{ aboutAuthorUrl }}"
-                                                            class="input input-bordered w-full pl-10"
-                                                            placeholder="https://..." />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="flex flex-col sm:flex-row gap-6 p-4 bg-base-200/50 rounded-xl">
-                                                <label class="label cursor-pointer gap-3 justify-start">
-                                                    <input type="checkbox" name="about_show_version"
-                                                        class="toggle toggle-primary" {% if aboutShowVersion %}checked{%
-                                                        endif %} />
-                                                    <span class="label-text font-semibold">Show App Version</span>
-                                                </label>
-                                                <label class="label cursor-pointer gap-3 justify-start">
-                                                    <input type="checkbox" name="about_show_github"
-                                                        class="toggle toggle-primary" {% if aboutShowGithub %}checked{%
-                                                        endif %} />
-                                                    <span class="label-text font-semibold">Show GitHub Links</span>
-                                                </label>
-                                            </div>
-
-                                            <div class="flex justify-end pt-4">
-                                                <button type="submit" class="btn btn-primary px-8">
-                                                    <i class="ti ti-device-floppy"></i> Save Changes
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- SMTP SECTION -->
-                            <div id="smtp" class="tab-content-section hidden">
-                                <div class="grid gap-8">
-                                    <div class="card bg-base-100 shadow-xl border border-base-200">
-                                        <div class="card-body">
-                                            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
-                                                <div class="p-3 bg-warning/10 rounded-xl text-warning">
-                                                    <i class="ti ti-mail-cog text-2xl"></i>
-                                                </div>
-                                                <div>
-                                                    <h2 class="text-2xl font-bold">SMTP Configuration</h2>
-                                                    <p class="text-sm opacity-70">Configure email server settings for
-                                                        system
-                                                        notifications.</p>
-                                                </div>
-                                            </div>
-
-                                            <form method="POST" class="space-y-6">
-                                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                                                <input type="hidden" name="upload_type" value="smtp_config" />
-
-                                                <div class="grid md:grid-cols-3 gap-6">
-                                                    <div class="form-control md:col-span-2">
-                                                        <label class="label"><span class="label-text font-bold">SMTP
-                                                                Server</span></label>
-                                                        <div class="relative">
-                                                            <i
-                                                                class="ti ti-server absolute left-3 top-3 opacity-50"></i>
-                                                            <input type="text" name="smtp_server"
-                                                                value="{{ smtpServer }}" placeholder="smtp.gmail.com"
-                                                                class="input input-bordered w-full pl-10" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-control">
-                                                        <label class="label"><span
-                                                                class="label-text font-bold">Port</span></label>
-                                                        <div class="relative">
-                                                            <i
-                                                                class="ti ti-numbers absolute left-3 top-3 opacity-50"></i>
-                                                            <input type="number" name="smtp_port" value="{{ smtpPort }}"
-                                                                placeholder="587"
-                                                                class="input input-bordered w-full pl-10" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="grid md:grid-cols-2 gap-6">
-                                                    <div class="form-control">
-                                                        <label class="label"><span class="label-text font-bold">Email
-                                                                Address</span></label>
-                                                        <div class="relative">
-                                                            <i class="ti ti-mail absolute left-3 top-3 opacity-50"></i>
-                                                            <input type="email" name="smtp_mail" value="{{ smtpMail }}"
-                                                                placeholder="system@example.com"
-                                                                class="input input-bordered w-full pl-10" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-control">
-                                                        <label class="label"><span class="label-text font-bold">Password
-                                                                / App
-                                                                Key</span></label>
-                                                        <div class="relative">
-                                                            <i class="ti ti-lock absolute left-3 top-3 opacity-50"></i>
-                                                            <input type="password" name="smtp_password"
-                                                                placeholder="••••••••••••"
-                                                                class="input input-bordered w-full pl-10" />
-                                                        </div>
-                                                        {% if smtpPasswordSet %}
-                                                        <label class="label">
-                                                            <span
-                                                                class="label-text-alt text-success flex items-center gap-1">
-                                                                <i class="ti ti-check-circle"></i> Password is set
-                                                            </span>
-                                                        </label>
-                                                        {% endif %}
-                                                    </div>
-                                                </div>
-
-                                                <div class="flex justify-end">
-                                                    <button type="submit" class="btn btn-warning">
-                                                        <i class="ti ti-device-floppy"></i> Save Configuration
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                    <!-- Test Connection -->
-                                    <div class="card bg-base-200/50 border border-base-200 border-dashed">
-                                        <div class="card-body">
-                                            <h3 class="font-bold text-lg mb-2 flex items-center gap-2">
-                                                <i class="ti ti-plug-connected"></i> Test Connection
-                                            </h3>
-                                            <p class="text-sm opacity-70 mb-4">Send a test email to verify your SMTP
-                                                settings are
-                                                working correctly.</p>
-
-                                            <form method="POST" class="flex gap-4">
-                                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                                                <input type="hidden" name="upload_type" value="smtp_test" />
-
-                                                <input type="email" name="test_email"
-                                                    placeholder="Recipient email address..."
-                                                    class="input input-bordered flex-grow" required />
-                                                <button type="submit" class="btn btn-neutral">
-                                                    <i class="ti ti-send"></i> Send Test
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- RATE LIMITS SECTION -->
-                            <div id="rate_limits" class="tab-content-section hidden">
-                                <div class="card bg-base-100 shadow-xl border border-base-200">
-                                    <div class="card-body">
-                                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
-                                            <div class="p-3 bg-error/10 rounded-xl text-error">
-                                                <i class="ti ti-shield-lock text-2xl"></i>
-                                            </div>
-                                            <div>
-                                                <h2 class="text-2xl font-bold">Rate Limiting</h2>
-                                                <p class="text-sm opacity-70">Configure global request rate limits to
-                                                    protect your server.</p>
-                                            </div>
-                                        </div>
-
-                                        <form method="POST" class="space-y-6">
-                                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-                                            <input type="hidden" name="upload_type" value="rate_limit_settings" />
-
-                                            <div class="form-control">
-                                                <label class="label cursor-pointer justify-start gap-4">
-                                                    <input type="checkbox" name="global_rate_limit_enabled"
-                                                        class="toggle toggle-error" {% if globalRateLimitEnabled
-                                                        %}checked{% endif %} />
-                                                    <span class="label-text font-bold">Enable Global Rate
-                                                        Limiting</span>
-                                                </label>
-                                                <label class="label">
-                                                    <span class="label-text-alt opacity-70 ml-14">If disabled, no rate
-                                                        limits will be applied to general requests (login limits still
-                                                        apply).</span>
-                                                </label>
-                                            </div>
-
-                                            <div class="grid md:grid-cols-2 gap-6">
-                                                <div class="form-control">
-                                                    <label class="label"><span class="label-text font-bold">Max
-                                                            Requests</span></label>
-                                                    <div class="relative">
-                                                        <i class="ti ti-activity absolute left-3 top-3 opacity-50"></i>
-                                                        <input type="number" name="global_rate_limit"
-                                                            value="{{ globalRateLimit }}" min="1"
-                                                            class="input input-bordered w-full pl-10" />
-                                                    </div>
-                                                    <label class="label"><span class="label-text-alt opacity-60">Number
-                                                            of requests allowed per IP</span></label>
-                                                </div>
-                                                <div class="form-control">
-                                                    <label class="label"><span class="label-text font-bold">Time Window
-                                                            (Seconds)</span></label>
-                                                    <div class="relative">
-                                                        <i class="ti ti-clock absolute left-3 top-3 opacity-50"></i>
-                                                        <input type="number" name="global_rate_limit_window"
-                                                            value="{{ globalRateLimitWindow }}" min="1"
-                                                            class="input input-bordered w-full pl-10" />
-                                                    </div>
-                                                    <label class="label"><span
-                                                            class="label-text-alt opacity-60">Duration to track
-                                                            requests</span></label>
-                                                </div>
-                                            </div>
-
-                                            <div class="alert alert-warning text-sm shadow-sm">
-                                                <i class="ti ti-alert-triangle"></i>
-                                                <span>Note: Static files (CSS, JS, Images) are excluded from rate
-                                                    limiting.</span>
-                                            </div>
-
-                                            <div class="flex justify-end pt-4">
-                                                <button type="submit" class="btn btn-error px-8">
-                                                    <i class="ti ti-device-floppy"></i> Save Limits
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
+
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- Current Logo -->
+                            <div class="space-y-3">
+                                <span class="label-text font-bold uppercase tracking-wider text-xs opacity-70">Current
+                                    Preview</span>
+                                <div
+                                    class="bg-base-200 bg-checker rounded-xl p-8 flex items-center justify-center h-64 border border-base-300 border-dashed relative group">
+                                    <img src="{{ currentLogo }}" alt="Current Site Logo"
+                                        class="max-w-full max-h-40 object-contain drop-shadow-md transition-transform duration-300 group-hover:scale-110" />
+                                    <div
+                                        class="absolute bottom-2 right-2 badge badge-ghost text-xs font-mono opacity-50">
+                                        {{ currentLogo }}</div>
+                                </div>
+                            </div>
+
+                            <!-- Upload Form -->
+                            <div class="space-y-4">
+                                <span class="label-text font-bold uppercase tracking-wider text-xs opacity-70">Upload
+                                    New</span>
+                                <form method="POST" enctype="multipart/form-data"
+                                    class="h-full flex flex-col justify-between">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                    <input type="hidden" name="upload_type" value="site_logo" />
+
+                                    <div class="form-control w-full flex-grow">
+                                        <div
+                                            class="border-2 border-dashed border-base-300 rounded-xl p-8 flex flex-col items-center justify-center text-center hover:border-primary hover:bg-base-200/50 transition-all cursor-pointer relative h-full">
+                                            <i class="ti ti-cloud-upload text-4xl text-base-content/30 mb-3"></i>
+                                            <p class="font-bold">Click to browse or drag file</p>
+                                            <p class="text-xs opacity-60 mt-1">Supports .ico, .png, .jpg, .webp</p>
+                                            <p class="text-xs opacity-60">Recommended: 180x180px</p>
+                                            <input type="file" name="site_logo" accept=".ico,.png,.jpg,.jpeg,.webp"
+                                                class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                                required />
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary w-full mt-4 gap-2">
+                                        <i class="ti ti-device-floppy"></i> Save New Logo
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {% include 'components/flash.html' %}
-            {% endblock body %}
+            <!-- DEFAULTS SECTION -->
+            <div id="defaults" class="tab-content-section hidden">
+                <div class="grid gap-8">
+                    <!-- Profile Picture -->
+                    <div class="card bg-base-100 shadow-xl border border-base-200">
+                        <div class="card-body">
+                            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
+                                <div class="p-3 bg-secondary/10 rounded-xl text-secondary">
+                                    <i class="ti ti-user-circle text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-bold">Default User Avatar</h2>
+                                    <p class="text-sm opacity-70">Fallback image for users without a profile picture.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col md:flex-row gap-8 items-center">
+                                <div class="flex-shrink-0">
+                                    <div class="avatar placeholder">
+                                        <div
+                                            class="bg-base-200 bg-checker rounded-full w-40 h-40 ring ring-base-300 ring-offset-base-100 ring-offset-2 overflow-hidden flex items-center justify-center">
+                                            {% if currentDefaultProfile %}
+                                            <img src="{{ currentDefaultProfile }}" alt="Default Profile" />
+                                            {% else %}
+                                            <span class="text-3xl opacity-50"><i class="ti ti-user"></i></span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    {% if not currentDefaultProfile %}
+                                    <div class="text-center mt-2 text-xs opacity-60">Using DiceBear</div>
+                                    {% endif %}
+                                </div>
+
+                                <form method="POST" enctype="multipart/form-data" class="flex-grow w-full">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                    <input type="hidden" name="upload_type" value="default_profile_picture" />
+
+                                    <div class="form-control w-full">
+                                        <label class="label">
+                                            <span class="label-text font-semibold">Upload Image</span>
+                                        </label>
+                                        <input type="file" name="default_profile_picture" accept="image/*"
+                                            class="file-input file-input-bordered file-input-secondary w-full"
+                                            required />
+                                        <label class="label">
+                                            <span class="label-text-alt opacity-60">Square ratio (1:1) recommended. Max
+                                                2MB.</span>
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn btn-secondary mt-2">
+                                        <i class="ti ti-upload"></i> Update Avatar
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Banner -->
+                    <div class="card bg-base-100 shadow-xl border border-base-200">
+                        <div class="card-body">
+                            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
+                                <div class="p-3 bg-accent/10 rounded-xl text-accent">
+                                    <i class="ti ti-photo-edit text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-bold">Default Profile Banner</h2>
+                                    <p class="text-sm opacity-70">Background header for user profiles.</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-6">
+                                <div
+                                    class="relative w-full h-48 bg-base-300 rounded-xl overflow-hidden shadow-inner group">
+                                    {% if currentDefaultBanner %}
+                                    <img src="{{ currentDefaultBanner }}"
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                        alt="Default Banner">
+                                    {% else %}
+                                    <div class="flex items-center justify-center h-full opacity-30">
+                                        <span class="text-lg font-bold uppercase tracking-widest">No Banner Set</span>
+                                    </div>
+                                    {% endif %}
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60">
+                                    </div>
+                                    <div class="absolute bottom-4 left-4 text-white font-bold text-shadow">Preview</div>
+                                </div>
+
+                                <form method="POST" enctype="multipart/form-data" class="flex gap-4 items-end">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                    <input type="hidden" name="upload_type" value="default_banner" />
+
+                                    <div class="form-control flex-grow">
+                                        <input type="file" name="default_banner" accept="image/*"
+                                            class="file-input file-input-bordered file-input-accent w-full" required />
+                                    </div>
+                                    <button type="submit" class="btn btn-accent">
+                                        <i class="ti ti-upload"></i> Upload
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT PAGE SECTION -->
+            <div id="about" class="tab-content-section hidden">
+                <div class="card bg-base-100 shadow-xl border border-base-200">
+                    <div class="card-body">
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
+                            <div class="p-3 bg-info/10 rounded-xl text-info">
+                                <i class="ti ti-info-circle text-2xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-2xl font-bold">About Page Content</h2>
+                                <p class="text-sm opacity-70">Customize the content and links on the public /about page.
+                                </p>
+                            </div>
+                            <a href="/about" target="_blank" class="btn btn-sm btn-ghost ml-auto">
+                                View Page <i class="ti ti-external-link"></i>
+                            </a>
+                        </div>
+
+                        <form method="POST" class="space-y-6">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                            <input type="hidden" name="upload_type" value="about_settings" />
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-control">
+                                    <label class="label"><span class="label-text font-bold">Page Title</span></label>
+                                    <input type="text" name="about_title" value="{{ aboutTitle }}"
+                                        placeholder="Default: {{ appName }}"
+                                        class="input input-bordered focus:input-primary" />
+                                </div>
+                                <div class="form-control">
+                                    <label class="label"><span class="label-text font-bold">Credits Text</span></label>
+                                    <input type="text" name="about_credits" value="{{ aboutCredits }}"
+                                        placeholder="e.g. Made with love"
+                                        class="input input-bordered focus:input-primary" />
+                                </div>
+                            </div>
+
+                            <div class="form-control">
+                                <label class="label"><span class="label-text font-bold">Main Content</span></label>
+                                <textarea name="about_content" rows="8"
+                                    class="textarea textarea-bordered focus:textarea-primary font-mono text-sm leading-relaxed"
+                                    placeholder="# About Us\n\nWrite your content here using Markdown...">{{ aboutContent }}</textarea>
+                                <label class="label"><span class="label-text-alt opacity-60"><i
+                                            class="ti ti-markdown"></i> Markdown supported</span></label>
+                            </div>
+
+                            <div class="divider">Links & Display</div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="form-control">
+                                    <label class="label"><span class="label-text font-bold">GitHub URL</span></label>
+                                    <div class="relative">
+                                        <i class="ti ti-brand-github absolute left-3 top-3 opacity-50"></i>
+                                        <input type="url" name="about_github_url" value="{{ aboutGithubUrl }}"
+                                            class="input input-bordered w-full pl-10"
+                                            placeholder="https://github.com/..." />
+                                    </div>
+                                </div>
+                                <div class="form-control">
+                                    <label class="label"><span class="label-text font-bold">Author
+                                            Website</span></label>
+                                    <div class="relative">
+                                        <i class="ti ti-world absolute left-3 top-3 opacity-50"></i>
+                                        <input type="url" name="about_author_url" value="{{ aboutAuthorUrl }}"
+                                            class="input input-bordered w-full pl-10" placeholder="https://..." />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-6 p-4 bg-base-200/50 rounded-xl">
+                                <label class="label cursor-pointer gap-3 justify-start">
+                                    <input type="checkbox" name="about_show_version" class="toggle toggle-primary" {% if
+                                        aboutShowVersion %}checked{% endif %} />
+                                    <span class="label-text font-semibold">Show App Version</span>
+                                </label>
+                                <label class="label cursor-pointer gap-3 justify-start">
+                                    <input type="checkbox" name="about_show_github" class="toggle toggle-primary" {% if
+                                        aboutShowGithub %}checked{% endif %} />
+                                    <span class="label-text font-semibold">Show GitHub Links</span>
+                                </label>
+                            </div>
+
+                            <div class="flex justify-end pt-4">
+                                <button type="submit" class="btn btn-primary px-8">
+                                    <i class="ti ti-device-floppy"></i> Save Changes
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SMTP SECTION -->
+            <div id="smtp" class="tab-content-section hidden">
+                <div class="grid gap-8">
+                    <div class="card bg-base-100 shadow-xl border border-base-200">
+                        <div class="card-body">
+                            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-base-200">
+                                <div class="p-3 bg-warning/10 rounded-xl text-warning">
+                                    <i class="ti ti-mail-cog text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-bold">SMTP Configuration</h2>
+                                    <p class="text-sm opacity-70">Configure email server settings for system
+                                        notifications.</p>
+                                </div>
+                            </div>
+
+                            <form method="POST" class="space-y-6">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                <input type="hidden" name="upload_type" value="smtp_config" />
+
+                                <div class="grid md:grid-cols-3 gap-6">
+                                    <div class="form-control md:col-span-2">
+                                        <label class="label"><span class="label-text font-bold">SMTP
+                                                Server</span></label>
+                                        <div class="relative">
+                                            <i class="ti ti-server absolute left-3 top-3 opacity-50"></i>
+                                            <input type="text" name="smtp_server" value="{{ smtpServer }}"
+                                                placeholder="smtp.gmail.com"
+                                                class="input input-bordered w-full pl-10" />
+                                        </div>
+                                    </div>
+                                    <div class="form-control">
+                                        <label class="label"><span class="label-text font-bold">Port</span></label>
+                                        <div class="relative">
+                                            <i class="ti ti-numbers absolute left-3 top-3 opacity-50"></i>
+                                            <input type="number" name="smtp_port" value="{{ smtpPort }}"
+                                                placeholder="587" class="input input-bordered w-full pl-10" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div class="form-control">
+                                        <label class="label"><span class="label-text font-bold">Email
+                                                Address</span></label>
+                                        <div class="relative">
+                                            <i class="ti ti-mail absolute left-3 top-3 opacity-50"></i>
+                                            <input type="email" name="smtp_mail" value="{{ smtpMail }}"
+                                                placeholder="system@example.com"
+                                                class="input input-bordered w-full pl-10" />
+                                        </div>
+                                    </div>
+                                    <div class="form-control">
+                                        <label class="label"><span class="label-text font-bold">Password / App
+                                                Key</span></label>
+                                        <div class="relative">
+                                            <i class="ti ti-lock absolute left-3 top-3 opacity-50"></i>
+                                            <input type="password" name="smtp_password" placeholder="••••••••••••"
+                                                class="input input-bordered w-full pl-10" />
+                                        </div>
+                                        {% if smtpPasswordSet %}
+                                        <label class="label">
+                                            <span class="label-text-alt text-success flex items-center gap-1">
+                                                <i class="ti ti-check-circle"></i> Password is set
+                                            </span>
+                                        </label>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-end">
+                                    <button type="submit" class="btn btn-warning">
+                                        <i class="ti ti-device-floppy"></i> Save Configuration
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Test Connection -->
+                    <div class="card bg-base-200/50 border border-base-200 border-dashed">
+                        <div class="card-body">
+                            <h3 class="font-bold text-lg mb-2 flex items-center gap-2">
+                                <i class="ti ti-plug-connected"></i> Test Connection
+                            </h3>
+                            <p class="text-sm opacity-70 mb-4">Send a test email to verify your SMTP settings are
+                                working correctly.</p>
+
+                            <form method="POST" class="flex gap-4">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                <input type="hidden" name="upload_type" value="smtp_test" />
+
+                                <input type="email" name="test_email" placeholder="Recipient email address..."
+                                    class="input input-bordered flex-grow" required />
+                                <button type="submit" class="btn btn-neutral">
+                                    <i class="ti ti-send"></i> Send Test
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% include 'components/flash.html' %}
+{% endblock body %}

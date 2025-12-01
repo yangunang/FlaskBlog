@@ -399,28 +399,6 @@ def siteSettingsTable():
     try:
         cursor.execute("SELECT setting_key FROM site_settings LIMIT 1;").fetchall()
         Log.info('Table: "site_settings" found in users database')
-        
-        # Check and insert missing default settings
-        default_settings = {
-            "global_rate_limit_enabled": "true",
-            "global_rate_limit": "60",
-            "global_rate_limit_window": "60"
-        }
-        
-        for key, value in default_settings.items():
-            cursor.execute("SELECT 1 FROM site_settings WHERE setting_key = ?", (key,))
-            if not cursor.fetchone():
-                Log.info(f'Setting "{key}" not found, inserting default...')
-                cursor.execute(
-                    """
-                    INSERT INTO site_settings(setting_key, setting_value, updated_at)
-                    VALUES(?, ?, ?)
-                    """,
-                    (key, value, currentTimeStamp())
-                )
-                connection.commit()
-                Log.success(f'Setting "{key}" added to site_settings')
-
     except Exception:
         Log.error('Table: "site_settings" not found in users database')
 
@@ -442,29 +420,6 @@ def siteSettingsTable():
             VALUES(?, ?, ?)
             """,
             ("site_logo", "/static/uploads/site_logo.ico", currentTimeStamp())
-        )
-
-        # Insert default rate limit settings
-        cursor.execute(
-            """
-            INSERT INTO site_settings(setting_key, setting_value, updated_at)
-            VALUES(?, ?, ?)
-            """,
-            ("global_rate_limit_enabled", "true", currentTimeStamp())
-        )
-        cursor.execute(
-            """
-            INSERT INTO site_settings(setting_key, setting_value, updated_at)
-            VALUES(?, ?, ?)
-            """,
-            ("global_rate_limit", "60", currentTimeStamp())
-        )
-        cursor.execute(
-            """
-            INSERT INTO site_settings(setting_key, setting_value, updated_at)
-            VALUES(?, ?, ?)
-            """,
-            ("global_rate_limit_window", "60", currentTimeStamp())
         )
 
         connection.commit()

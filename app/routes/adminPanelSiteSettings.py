@@ -585,74 +585,6 @@ FlaskBlog Admin Panel
             connection.close()
             return redirect("/admin/site-settings")
 
-        # Handle Rate Limit settings
-        elif upload_type == "rate_limit_settings":
-            global_rate_limit_enabled = "true" if request.form.get("global_rate_limit_enabled") else "false"
-            global_rate_limit = request.form.get("global_rate_limit", "60")
-            global_rate_limit_window = request.form.get("global_rate_limit_window", "60")
-
-            try:
-                # Validate inputs
-                try:
-                    limit = int(global_rate_limit)
-                    window = int(global_rate_limit_window)
-                    if limit < 1 or window < 1:
-                        raise ValueError("Values must be positive")
-                except ValueError:
-                    flashMessage(
-                        page="adminSiteSettings",
-                        message="rateLimitInvalid",
-                        category="error",
-                        language=session.get("language", "en")
-                    )
-                    connection.close()
-                    return redirect("/admin/site-settings")
-
-                # Save settings
-                rate_limit_settings = [
-                    ("global_rate_limit_enabled", global_rate_limit_enabled),
-                    ("global_rate_limit", global_rate_limit),
-                    ("global_rate_limit_window", global_rate_limit_window),
-                ]
-
-                for key, value in rate_limit_settings:
-                    cursor.execute(
-                        "SELECT setting_id FROM site_settings WHERE setting_key = ?",
-                        (key,)
-                    )
-                    if cursor.fetchone():
-                        cursor.execute(
-                            "UPDATE site_settings SET setting_value = ?, updated_at = ? WHERE setting_key = ?",
-                            (value, currentTimeStamp(), key)
-                        )
-                    else:
-                        cursor.execute(
-                            "INSERT INTO site_settings(setting_key, setting_value, updated_at) VALUES(?, ?, ?)",
-                            (key, value, currentTimeStamp())
-                        )
-
-                connection.commit()
-
-                flashMessage(
-                    page="adminSiteSettings",
-                    message="saveSuccess",
-                    category="success",
-                    language=session.get("language", "en")
-                )
-                Log.success(f"Admin {session['userName']} updated rate limit settings")
-
-            except Exception as e:
-                flashMessage(
-                    page="adminSiteSettings",
-                    message="saveError",
-                    category="error",
-                    language=session.get("language", "en")
-                )
-                Log.error(f"Rate limit settings update failed: {e}")
-
-            connection.close()
-            return redirect("/admin/site-settings")
-
     # GET request - show current settings
     cursor.execute(
         "SELECT setting_value FROM site_settings WHERE setting_key = ?",
@@ -718,23 +650,6 @@ FlaskBlog Admin Panel
             elif key == "about_show_github":
                 about_settings[key] = "True"
 
-    # Get Rate Limit settings
-    rate_limit_settings = {}
-    for key in ["global_rate_limit_enabled", "global_rate_limit", "global_rate_limit_window"]:
-        cursor.execute(
-            "SELECT setting_value FROM site_settings WHERE setting_key = ?",
-            (key,)
-        )
-        result = cursor.fetchone()
-        if result:
-            rate_limit_settings[key] = result[0]
-        else:
-            # Defaults
-            if key == "global_rate_limit_enabled":
-                rate_limit_settings[key] = "true"
-            else:
-                rate_limit_settings[key] = "60"
-
     connection.close()
 
     Log.info(f"Admin {session['userName']} viewing site settings page")
@@ -755,9 +670,6 @@ FlaskBlog Admin Panel
         aboutGithubUrl=about_settings.get("about_github_url", ""),
         aboutAuthorUrl=about_settings.get("about_author_url", ""),
         aboutCredits=about_settings.get("about_credits", ""),
-        globalRateLimitEnabled=rate_limit_settings.get("global_rate_limit_enabled", "true") == "true",
-        globalRateLimit=rate_limit_settings.get("global_rate_limit", "60"),
-        globalRateLimitWindow=rate_limit_settings.get("global_rate_limit_window", "60"),
         appName=Settings.APP_NAME,
         appVersion=Settings.APP_VERSION
     )
