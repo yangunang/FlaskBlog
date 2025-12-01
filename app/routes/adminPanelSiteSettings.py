@@ -718,9 +718,6 @@ FlaskBlog Admin Panel
             elif key == "about_show_github":
                 about_settings[key] = "True"
 
-            elif key == "about_show_github":
-                about_settings[key] = "True"
-
     # Get Rate Limit settings
     rate_limit_settings = {}
     for key in ["global_rate_limit_enabled", "global_rate_limit", "global_rate_limit_window"]:
@@ -757,7 +754,6 @@ FlaskBlog Admin Panel
         aboutShowGithub=about_settings.get("about_show_github", "True") == "True",
         aboutGithubUrl=about_settings.get("about_github_url", ""),
         aboutAuthorUrl=about_settings.get("about_author_url", ""),
-        aboutCredits=about_settings.get("about_credits", ""),
         aboutCredits=about_settings.get("about_credits", ""),
         globalRateLimitEnabled=rate_limit_settings.get("global_rate_limit_enabled", "true") == "true",
         globalRateLimit=rate_limit_settings.get("global_rate_limit", "60"),
